@@ -1,0 +1,505 @@
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+// Warna tema
+$primary-color: #0056D2;
+$secondary-color: #A1ACBF;
+$border-color: #e0e0e0;
+$hover-color: #002661;
+
+// Body
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F2F5FA;
+  min-height: 100vh;
+  margin: 0; /* Hilangkan margin default */
+  display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+// Navbar
+.navbar-custom {
+position: fixed;
+top: 0; /* Tetap di atas layar */
+width: 100%; /* Agar memenuhi lebar layar */
+z-index: 1030; /* Pastikan berada di atas elemen lain */
+background-color: white; // Background putih
+border-bottom: 1px solid $border-color;
+padding: 1rem 2rem;
+box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10); // Menambahkan shadow
+
+  .navbar-brand {
+    color: $primary-color;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 35px; // Ukuran logo
+      margin-right: 8px; // Spasi antara logo dan teks
+    }
+  }
+  // Search bar
+  .form-search {
+    width: 400px; // Lebar default
+    max-width: 100%; // Maksimal lebar
+    box-shadow: none; // Efek bayangan
+    border-radius: 10px; // Sudut membulat
+    overflow: hidden;
+
+    .input-group {
+      border: 1px solid $border-color; // Border untuk grup input
+      border-radius: 10px;
+      overflow: hidden;
+
+      .input-group-text {
+        background-color: white; // Background putih
+        border-right: none; // Hilangkan border kanan
+        display: flex; // Ikon tetap di tengah
+        align-items: center;
+
+        .bi-search {
+          color: #0056D2; /* Warna biru untuk ikon pencarian */
+          font-size: 1.25rem; /* Sesuaikan ukuran jika diperlukan */
+        }
+
+        i {
+          color: $primary-color; // Warna ikon biru
+          font-size: 3 rem; // Ukuran ikon
+        }
+      }
+
+      .form-control {
+        border: none; // Hilangkan border default
+        padding: 0.5rem 1rem; // Padding dalam
+        border-left: none; // Hilangkan border kiri
+        &:focus {
+          outline: none; /* Hilangkan outline default */
+          box-shadow: none; /* Hilangkan shadow biru */
+        }
+      }
+    }
+  }
+  // Beranda dll
+  .nav-link {
+    color: $secondary-color;
+    font-weight: 500;
+    text-decoration: none; // Menghilangkan garis bawah default
+
+    &:hover {
+      color: $hover-color; // Warna saat hover
+      text-decoration: none; // Garis bawah saat hover
+    }
+
+    &.active {
+      color: $primary-color; // Warna aktif
+    }
+  }
+  // Tombol login
+  .btn-login {
+    background-color: $primary-color;
+    color: white;
+    font-weight: 600;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: $hover-color; // Warna hover
+      transform: translateY(0px); // Efek melayang
+    }
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 64px; // Jarak antar menu
+    margin-right: 116px; // Jarak grup ini ke kanan
+
+    @media (max-width: 768px) {
+      flex-direction: column; // Susun vertikal di layar kecil
+      gap: 16px; // Jarak lebih kecil
+      margin-right: 0; // Hilangkan margin kanan
+    }
+  }
+
+  .navbar-toggler {
+    border: none; // Hilangkan border default
+    padding: 0.5rem;
+
+    .navbar-toggler-icon {
+      width: 1.5rem; // Ukuran lebih besar
+      height: 1.5rem;
+      background-size: contain; // Pastikan gambar proporsional
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 86, 210, 0.5); // Efek fokus
+    }
+  }
+}
+
+// Container 1
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  margin-top: 100px;
+
+  .content {
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+    background: white;
+    border-radius: 10px;
+    padding: 60px 150px;
+
+    .image {
+      width: 600px;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .text {
+      h2 {
+        color: #2b61e6; // Warna biru seperti gambar
+        font-size: 28px;
+        margin-bottom: 50px;
+        font-weight: bold;
+      }
+
+      p {
+        color: #333;
+        line-height: 1.6;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// Categori Home
+.categories-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); // 4 kolom
+  gap: 20px; // Menurunkan jarak antar elemen grid, misalnya 20px
+  padding: 60px;
+  margin-top: 100px;
+  margin-bottom: 110px; /* Menambahkan jarak bawah */
+
+  .category-item {
+    display: flex;
+    flex-direction: column; // Susunan vertikal
+    align-items: center; // Pusatkan secara horizontal
+    text-align: center; // Pusatkan teks
+    gap: 8px; // Menurunkan jarak antar ikon dan teks
+
+    .icon {
+      width: 80px; // Lebar ikon
+      height: 80px; // Tinggi ikon
+      background-color: #2b61e6; // Warna biru
+      border-radius: 50%; // Lingkaran
+      display: flex; // Flexbox untuk ikon
+      align-items: center; // Pusatkan ikon secara vertikal
+      justify-content: center; // Pusatkan ikon secara horizontal
+      color: white; // Warna ikon
+      font-size: 40px; // Ukuran ikon
+    }
+    .icon img {
+      max-width: 50%;
+      max-height: 50%;
+      object-fit: contain;
+    }
+
+    p {
+      margin-top: 10px; // Tambahkan jarak untuk menurunkan teks
+      color: #333; // Warna teks
+      font-size: 14px; // Ukuran font
+      font-weight: 600; // Tebal teks
+      word-break: break-word; // Pecahkan kata jika terlalu panjang
+      max-width: 140px; // Atur lebar maksimal untuk membatasi teks
+    }
+  }
+
+
+}
+
+// Carouserl container
+
+
+
+
+// Kategori
+.breadcrumb-container {
+    background-color: #E6F0FF; /* Warna latar belakang biru muda */
+    width: 100%; /* Agar memenuhi lebar layar */
+    display: flex; /* Menggunakan Flexbox */
+    align-items: center; /* Menyelaraskan item secara vertikal */
+    height: 60px; /* Tinggi total container breadcrumb */
+}
+.breadcrumb {
+    margin: 0; /* Menghapus margin default */
+    padding: 0; /* Menghapus padding default */
+    font-size: 14px; /* Ukuran font */
+    color: #000; /* Warna teks */
+}
+
+.breadcrumb-item a {
+    font-size: 14px;
+    color: #000; /* Warna teks */
+    text-decoration: none; /* Menghilangkan garis bawah */
+
+}
+
+.breadcrumb-item a:hover {
+    color: #002661; /* Warna saat hover */
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: " > "; /* Tanda panah */
+    color: #000; /* Warna panah */
+    font-weight: Medium; /* Tebal */
+}
+.custom-jumbotron {
+    background-size: contain; /* Sesuaikan ukuran */
+    width: 100%;
+    height: 166px;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex; /* Tambahkan flexbox */
+    align-items: center; /* Pusatkan secara vertikal */
+    justify-content: start; /* Tetapkan teks di kiri */
+}
+.text-centered-left {
+    text-align: left; /* Tetap rata kiri */
+    font-size: 34px; /* Ukuran font */
+    font-weight: medium; /* Teks tebal */
+    margin-left: 10px; /* Tambahkan jarak dari kiri jika perlu */
+}
+.nav-tabs {
+    display: flex;
+    border-bottom: none; /* Hilangkan border bawah default */
+}
+
+.nav-tabs .nav-item {
+    margin-right: 40px; /* Jarak antar tab */
+}
+
+.nav-tabs .nav-link {
+    border: none; /* Hilangkan border default */
+    color: #6c757d; /* Warna teks default */
+    font-weight: 500; /* Tebal teks */
+    font-size: 18px; /* Ukuran font */
+    padding: 8px 0; /* Padding vertikal */
+    position: relative;
+}
+
+.nav-tabs .nav-link.active {
+    color: #007bff; /* Warna teks saat aktif */
+    font-weight: bold; /* Tebal teks */
+}
+
+.nav-tabs .nav-link.active::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #007bff; /* Warna garis bawah */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+
+
+// footer
+.footer {
+  background-color: #f9fafb;
+  color: #333;
+  padding: 40px 20px;
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .footer-logo {
+      flex: 1;
+
+      .logo {
+        max-width: 200px;
+      }
+    }
+
+    .footer-info {
+      flex: 2;
+      text-align: left;
+
+      h4 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #4a5568;
+      }
+
+      .info-columns {
+        display: flex;
+        justify-content: start; /* Tetap mengatur elemen ke kiri */
+        gap: 120px; /* Ubah jarak antar kolom menjadi lebih kecil */
+
+        ul {
+          list-style: none;
+          margin: 0; /* Pastikan tidak ada margin tambahan pada ul */
+          padding: 0; /* Hilangkan padding default */
+
+          li {
+            margin-bottom: 8px; /* Opsional: Atur jarak antar item agar lebih rapi */
+
+            a {
+              text-decoration: none;
+              color: #4a5568;
+              font-size: 0.95rem;
+              transition: color 0.3s;
+
+              &:hover {
+                color: #1a73e8;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+
+    .footer-social {
+      flex: 0,8;
+      text-align: left;
+
+      h4 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #4a5568;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 10px;
+
+          a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            color: #4a5568;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+
+            i {
+              margin-right: 8px;
+              transition: color 0.3s ease;
+            }
+
+            /* Warna khusus untuk setiap ikon */
+            .bi-instagram {
+              color: #4a5568; /* Warna Instagram default */
+            }
+
+            .bi-youtube {
+              color: #4a5568; /* Warna YouTube default */
+            }
+
+            .bi-facebook {
+              color: #4a5568; /* Warna Facebook default */
+            }
+
+            &:hover {
+              color: #1a73e8;
+
+              i {
+                color: #1a73e8; /* Semua ikon berubah biru saat hover */
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+
+  .footer-copyright {
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    color: #718096;
+    margin-top: 20px;
+  }
+}
+
+
+
+
+
+// Responsivitas untuk layar kecil
+@media (max-width: 768px) {
+  .navbar-custom {
+    padding: 0.5rem 1rem; // Kurangi padding
+
+    .form-search {
+      width: calc(100% - 2rem); // Lebar penuh minus margin
+      margin: 0 auto; // Tengah di layar kecil
+
+      input {
+        font-size: 0.9rem; // Ukuran teks lebih kecil
+      }
+    }
+
+    .btn-login {
+      margin-top: 1rem; // Tambahkan margin atas
+      width: 100%; // Tombol login penuh di layar kecil
+    }
+  }
+  .categories-container {
+    grid-template-columns: repeat(2, 1fr); // 2 kolom di layar kecil
+  }
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+
+    .footer-info {
+      flex-direction: column;
+      align-items: center;
+
+      ul {
+        margin-bottom: 20px;
+      }
+    }
+
+    .footer-social {
+      margin-top: 20px;
+    }
+  }
+  .card {
+    width: 250px; /* Ukuran lebih kecil untuk tampilan mobile */
+}
+}
