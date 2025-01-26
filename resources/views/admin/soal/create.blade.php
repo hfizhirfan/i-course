@@ -959,253 +959,86 @@ document.getElementById('add-answer-button').addEventListener('click', function 
 });
 
 
+let answerIndex = 2; // Dimulai dari "C" (A=0, B=1, C=2)
+const maxAnswerIndex = 4; // Batas maksimum jawaban, yaitu "E"
 
 document.getElementById('add-question-btn').addEventListener('click', function () {
-        const questionContainer = document.getElementById('question-container');
-        const questionCount = questionContainer.querySelectorAll('.card.mb-3').length;
+    const questionContainer = document.getElementById('question-container');
+    const questionCount = questionContainer.querySelectorAll('.card.mb-3').length;
 
-        const uniqueToggleId = `dropdown-toggle-${Date.now()}`;
-        const uniqueMenuId = `dropdown-menu-${Date.now()}`;
+    // ID unik untuk elemen dropdown
+    const uniqueToggleId = `dropdown-toggle-${Date.now()}`;
+    const uniqueMenuId = `dropdown-menu-${Date.now()}`;
 
-        const newCard = document.createElement('div');
-        newCard.className = 'card mb-3';
+    const newCard = document.createElement('div');
+    newCard.className = 'card mb-3';
 
-        // Isi elemen baru dengan struktur HTML
-        newCard.innerHTML = `
-
-            <!-- Pertanyaan -->
-                    <div class="question-row">
-                        <!-- Nomor Pertanyaan -->
-                        <label class="question-number">${questionCount + 1}.</label>
-
-                        <div class="textarea-container">
-                            <textarea class="form-control question-textarea" rows="4" placeholder="Masukkan pertanyaan"></textarea>
-                            <div id="imagePreviewContainer"
-                                class="image-preview-container"
-                                style="
-                                    position: absolute;
-                                    bottom: 10px;
-                                    left: 10px;
-                                    max-width: 90%;
-                                    pointer-events: none;">
-                                <img id="imagePreview"
-                                    class="image-preview"
-                                    alt="Preview Gambar"
-                                    style="
-                                        max-width: 100px; /* Atur lebar maksimum */
-                                        max-height: 100px; /* Atur tinggi maksimum */
-                                        display: none;
-                                        border: 1px solid #ccc;
-                                        border-radius: 5px;">
-                            </div>
-                            <button class="image-button" id="imageButton">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
-                                    <path d="M4.16732 4.97248H3.93147V5.20833V17.7083V17.9442H4.16732H12.2648V19.5558H4.16732C3.14862 19.5558 2.31983 18.727 2.31983 17.7083V5.20833C2.31983 4.18963 3.14862 3.36085 4.16732 3.36085H17.709C18.7277 3.36085 19.5565 4.18963 19.5565 5.20833V12.2642H17.9448V5.20833V4.97248H17.709H4.16732Z"/>
-                                    <path d="M16.2266 15.3892H5.68068L8.2937 11.9051L9.1647 13.6471L9.33536 13.9885L9.56433 13.6832L12.4893 9.78319L16.2266 15.3892Z" stroke-width="0.471698"/>
-                                    <path d="M20.8333 15.625H18.75V18.75H15.625V20.8333H18.75V23.9583H20.8333V20.8333H23.9583V18.75H20.8333V15.625Z"/>
-                                </svg>
-                            </button>
-                            <!-- Input file yang tersembunyi -->
-                            <input type="file" id="fileInput" class="hidden-file-input" accept="image/*">
-                        </div>
-                        <div class="question-options">
-                            <!-- Dropdown Pilihan Ganda / Esai -->
-                            <div class="question-type-container">
-                                <button id="${uniqueToggleId}" class="dropdown-toggle" style="border: 1px solid #ccc;">
-                                    <span class="dropdown-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                                            <path d="M2.64062 9.99984C2.64062 14.6023 6.37146 18.3332 10.974 18.3332C15.5765 18.3332 19.3073 14.6023 19.3073 9.99984C19.3073 5.39734 15.5765 1.6665 10.974 1.6665C6.37146 1.6665 2.64062 5.39734 2.64062 9.99984ZM17.6406 9.99984C17.6406 11.7679 16.9382 13.4636 15.688 14.7139C14.4378 15.9641 12.7421 16.6665 10.974 16.6665C9.20585 16.6665 7.51016 15.9641 6.25991 14.7139C5.00967 13.4636 4.30729 11.7679 4.30729 9.99984C4.30729 8.23173 5.00967 6.53603 6.25991 5.28579C7.51016 4.03555 9.20585 3.33317 10.974 3.33317C12.7421 3.33317 14.4378 4.03555 15.688 5.28579C16.9382 6.53603 17.6406 8.23173 17.6406 9.99984ZM10.974 14.9998C12.3 14.9998 13.5718 14.4731 14.5095 13.5354C15.4472 12.5977 15.974 11.3259 15.974 9.99984C15.974 8.67375 15.4472 7.40199 14.5095 6.4643C13.5718 5.52662 12.3 4.99984 10.974 4.99984C9.64788 4.99984 8.37611 5.52662 7.43842 6.4643C6.50074 7.40199 5.97396 8.67375 5.97396 9.99984C5.97396 11.3259 6.50074 12.5977 7.43842 13.5354C8.37611 14.4731 9.64788 14.9998 10.974 14.9998Z" fill="black" />
-                                        </svg>
-                                    </span>
-                                    <span class="dropdown-text"> Pilihan ganda</span>
-                                </button>
-                                <ul id="${uniqueMenuId}" class="dropdown-menu">
-                                    <li data-value="multiple-choice" data-icon='
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                                            <path d="M2.64062 9.99984C2.64062 14.6023 6.37146 18.3332 10.974 18.3332C15.5765 18.3332 19.3073 14.6023 19.3073 9.99984C19.3073 5.39734 15.5765 1.6665 10.974 1.6665C6.37146 1.6665 2.64062 5.39734 2.64062 9.99984ZM17.6406 9.99984C17.6406 11.7679 16.9382 13.4636 15.688 14.7139C14.4378 15.9641 12.7421 16.6665 10.974 16.6665C9.20585 16.6665 7.51016 15.9641 6.25991 14.7139C5.00967 13.4636 4.30729 11.7679 4.30729 9.99984C4.30729 8.23173 5.00967 6.53603 6.25991 5.28579C7.51016 4.03555 9.20585 3.33317 10.974 3.33317C12.7421 3.33317 14.4378 4.03555 15.688 5.28579C16.9382 6.53603 17.6406 8.23173 17.6406 9.99984ZM10.974 14.9998C12.3 14.9998 13.5718 14.4731 14.5095 13.5354C15.4472 12.5977 15.974 11.3259 15.974 9.99984C15.974 8.67375 15.4472 7.40199 14.5095 6.4643C13.5718 5.52662 12.3 4.99984 10.974 4.99984C9.64788 4.99984 8.37611 5.52662 7.43842 6.4643C6.50074 7.40199 5.97396 8.67375 5.97396 9.99984C5.97396 11.3259 6.50074 12.5977 7.43842 13.5354C8.37611 14.4731 9.64788 14.9998 10.974 14.9998Z" fill="black"/>
-                                        </svg>'>
-                                        <span class="dropdown-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                                                <path d="M2.64062 9.99984C2.64062 14.6023 6.37146 18.3332 10.974 18.3332C15.5765 18.3332 19.3073 14.6023 19.3073 9.99984C19.3073 5.39734 15.5765 1.6665 10.974 1.6665C6.37146 1.6665 2.64062 5.39734 2.64062 9.99984ZM17.6406 9.99984C17.6406 11.7679 16.9382 13.4636 15.688 14.7139C14.4378 15.9641 12.7421 16.6665 10.974 16.6665C9.20585 16.6665 7.51016 15.9641 6.25991 14.7139C5.00967 13.4636 4.30729 11.7679 4.30729 9.99984C4.30729 8.23173 5.00967 6.53603 6.25991 5.28579C7.51016 4.03555 9.20585 3.33317 10.974 3.33317C12.7421 3.33317 14.4378 4.03555 15.688 5.28579C16.9382 6.53603 17.6406 8.23173 17.6406 9.99984ZM10.974 14.9998C12.3 14.9998 13.5718 14.4731 14.5095 13.5354C15.4472 12.5977 15.974 11.3259 15.974 9.99984C15.974 8.67375 15.4472 7.40199 14.5095 6.4643C13.5718 5.52662 12.3 4.99984 10.974 4.99984C9.64788 4.99984 8.37611 5.52662 7.43842 6.4643C6.50074 7.40199 5.97396 8.67375 5.97396 9.99984C5.97396 11.3259 6.50074 12.5977 7.43842 13.5354C8.37611 14.4731 9.64788 14.9998 10.974 14.9998Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        Pilihan ganda
-                                    </li>
-                                    <li data-value="essay" data-icon='
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none">
-                                            <path d="M15.6621 1H0.662109M15.6621 4.33333H0.662109M7.32878 7.66667H0.662109M7.32878 11H0.662109" stroke="black" stroke-width="1.0566" stroke-linecap="round"/>
-                                        </svg>'>
-                                        <span class="dropdown-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none">
-                                                <path d="M15.6621 1H0.662109M15.6621 4.33333H0.662109M7.32878 7.66667H0.662109M7.32878 11H0.662109" stroke="black" stroke-width="1.0566" stroke-linecap="round"/>
-                                            </svg>
-                                        </span>
-                                        Esai
-                                    </li>
-                                </ul>
-
-                            </div>
-
-                            <!-- Input Poin -->
-                            <div class="points-container">
-                                <label for="points" class="mb-1">Poin</label>
-                                <input type="number" id="points" class="form-control" style="width: 80px;" min="0" value="0">
-                            </div>
-                        </div>
-
+    // Isi elemen baru dengan struktur HTML
+    newCard.innerHTML = `
+        <div class="question-row">
+            <!-- Nomor Pertanyaan -->
+            <label class="question-number">${questionCount + 1}.</label>
+            <div class="textarea-container" data-group="${questionCount + 1}">
+                <textarea class="form-control question-textarea" rows="4" placeholder="Masukkan pertanyaan"></textarea>
+            </div>
+        </div>
+        <div class="answers-container" id="multiple-choice" style="display: block;">
+            <div id="answers-container">
+                <div class="answer-input-group d-flex align-items-center mb-2">
+                    <button class="btn status-button me-2" onclick="toggleAnswerStatus(this)" style="border: none;"></button>
+                    <label class="answer-label me-2">A.</label>
+                    <div class="input-wrapper position-relative">
+                        <input type="text" class="form-control pr-5" placeholder="Masukkan jawaban">
                     </div>
-                    <!-- Jawaban -->
-                    <div class="answers-container" id="multiple-choice" style="display: block;">
-                        <div id="answers-container">
-                            <!-- Answer Group -->
-                                <div class="answer-input-group d-flex align-items-center mb-2">
-                                    <button class="btn status-button me-2" onclick="toggleAnswerStatus(this)" style="border: none;">
-                                        <!-- Ikon SVG Silang -->
-                                        <svg class="icon-x" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.40234 12.0001C1.40234 9.18967 2.51879 6.49434 4.50607 4.50705C6.49336 2.51977 9.1887 1.40332 11.9991 1.40332C14.8096 1.40332 17.5049 2.51977 19.4922 4.50705C21.4795 6.49434 22.5959 9.18967 22.5959 12.0001C22.5959 14.8106 21.4795 17.5059 19.4922 19.4932C17.5049 21.4805 14.8096 22.5969 11.9991 22.5969C9.1887 22.5969 6.49336 21.4805 4.50607 19.4932C2.51879 17.5059 1.40234 14.8106 1.40234 12.0001ZM11.9991 2.92332C9.59183 2.92332 7.28311 3.87962 5.58088 5.58185C3.87865 7.28408 2.92234 9.5928 2.92234 12.0001C2.92234 14.4074 3.87865 16.7162 5.58088 18.4184C7.28311 20.1206 9.59183 21.0769 11.9991 21.0769C14.4065 21.0769 16.7152 20.1206 18.4174 18.4184C20.1196 16.7162 21.0759 14.4074 21.0759 12.0001C21.0759 9.5928 20.1196 7.28408 18.4174 5.58185C16.7152 3.87962 14.4065 2.92332 11.9991 2.92332ZM15.7655 8.23532C15.9155 8.38534 15.9998 8.58879 15.9998 8.80092C15.9998 9.01305 15.9155 9.2165 15.7655 9.36652L13.1303 12.0001L15.7655 14.6337C15.9158 14.7839 16.0002 14.9877 16.0002 15.2001C16.0002 15.4126 15.9158 15.6163 15.7655 15.7665C15.6153 15.9167 15.4116 16.0011 15.1991 16.0011C14.9867 16.0011 14.783 15.9167 14.6327 15.7665L11.9991 13.1313L9.36554 15.7665C9.29116 15.8409 9.20286 15.8999 9.10568 15.9402C9.0085 15.9804 8.90434 16.0011 8.79914 16.0011C8.69395 16.0011 8.58979 15.9804 8.49261 15.9402C8.39543 15.8999 8.30713 15.8409 8.23274 15.7665C8.15836 15.6921 8.09936 15.6038 8.05911 15.5067C8.01885 15.4095 7.99813 15.3053 7.99813 15.2001C7.99813 15.0949 8.01885 14.9908 8.05911 14.8936C8.09936 14.7964 8.15836 14.7081 8.23274 14.6337L10.8679 12.0001L8.23274 9.36652C8.08253 9.2163 7.99813 9.01256 7.99813 8.80012C7.99813 8.58768 8.08253 8.38394 8.23274 8.23372C8.38296 8.0835 8.5867 7.99911 8.79914 7.99911C9.01159 7.99911 9.21533 8.0835 9.36554 8.23372L11.9991 10.8689L14.6327 8.23372C14.7071 8.15922 14.7953 8.10011 14.8925 8.05978C14.9897 8.01945 15.0939 7.99869 15.1991 7.99869C15.3044 7.99869 15.4086 8.01945 15.5058 8.05978C15.603 8.10011 15.6912 8.16082 15.7655 8.23532Z" fill="black"/>
-                                        </svg>
-                                    </button>
-                                    <label class="answer-label me-2">A.</label>
-                                    <div class="input-wrapper position-relative">
-                                        <input type="text" class="form-control pr-5" placeholder="Masukkan jawaban">
-                                        <button class="btn image-button position-absolute end-0 top-50 translate-middle-y" style="border: none;" onclick="document.getElementById('image-upload').click();">
-                                            <!-- Ikon Upload -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                                                <path d="M4.16732 4.97248H3.93147V5.20833V17.7083V17.9442H4.16732H12.2648V19.5558H4.16732C3.14862 19.5558 2.31983 18.727 2.31983 17.7083V5.20833C2.31983 4.18963 3.14862 3.36085 4.16732 3.36085H17.709C18.7277 3.36085 19.5565 4.18963 19.5565 5.20833V12.2642H17.9448V5.20833V4.97248H17.709H4.16732Z" fill="#4A5568" stroke="#4A5568" stroke-width="0.471698"/>
-                                                <path d="M16.2266 15.3892H5.68068L8.2937 11.9051L9.1647 13.6471L9.33536 13.9885L9.56433 13.6832L12.4893 9.78319L16.2266 15.3892Z" fill="#4A5568" stroke="#4A5568" stroke-width="0.471698"/>
-                                                <path d="M20.8333 15.625H18.75V18.75H15.625V20.8333H18.75V23.9583H20.8333V20.8333H23.9583V18.75H20.8333V15.625Z" fill="#4A5568"/>
-                                            </svg>
-                                        </button>
-                                        <input type="file" id="image-upload" style="display: none;" onchange="handleFileUpload(event)">
-                                    </div>
-                                </div>
-
-                                <div class="answer-input-group d-flex align-items-center mb-2">
-                                    <button class="btn status-button me-2" onclick="toggleAnswerStatus(this)" style="border: none;">
-                                        <!-- Ikon SVG Silang -->
-                                        <svg class="icon-x" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.40234 12.0001C1.40234 9.18967 2.51879 6.49434 4.50607 4.50705C6.49336 2.51977 9.1887 1.40332 11.9991 1.40332C14.8096 1.40332 17.5049 2.51977 19.4922 4.50705C21.4795 6.49434 22.5959 9.18967 22.5959 12.0001C22.5959 14.8106 21.4795 17.5059 19.4922 19.4932C17.5049 21.4805 14.8096 22.5969 11.9991 22.5969C9.1887 22.5969 6.49336 21.4805 4.50607 19.4932C2.51879 17.5059 1.40234 14.8106 1.40234 12.0001ZM11.9991 2.92332C9.59183 2.92332 7.28311 3.87962 5.58088 5.58185C3.87865 7.28408 2.92234 9.5928 2.92234 12.0001C2.92234 14.4074 3.87865 16.7162 5.58088 18.4184C7.28311 20.1206 9.59183 21.0769 11.9991 21.0769C14.4065 21.0769 16.7152 20.1206 18.4174 18.4184C20.1196 16.7162 21.0759 14.4074 21.0759 12.0001C21.0759 9.5928 20.1196 7.28408 18.4174 5.58185C16.7152 3.87962 14.4065 2.92332 11.9991 2.92332ZM15.7655 8.23532C15.9155 8.38534 15.9998 8.58879 15.9998 8.80092C15.9998 9.01305 15.9155 9.2165 15.7655 9.36652L13.1303 12.0001L15.7655 14.6337C15.9158 14.7839 16.0002 14.9877 16.0002 15.2001C16.0002 15.4126 15.9158 15.6163 15.7655 15.7665C15.6153 15.9167 15.4116 16.0011 15.1991 16.0011C14.9867 16.0011 14.783 15.9167 14.6327 15.7665L11.9991 13.1313L9.36554 15.7665C9.29116 15.8409 9.20286 15.8999 9.10568 15.9402C9.0085 15.9804 8.90434 16.0011 8.79914 16.0011C8.69395 16.0011 8.58979 15.9804 8.49261 15.9402C8.39543 15.8999 8.30713 15.8409 8.23274 15.7665C8.15836 15.6921 8.09936 15.6038 8.05911 15.5067C8.01885 15.4095 7.99813 15.3053 7.99813 15.2001C7.99813 15.0949 8.01885 14.9908 8.05911 14.8936C8.09936 14.7964 8.15836 14.7081 8.23274 14.6337L10.8679 12.0001L8.23274 9.36652C8.08253 9.2163 7.99813 9.01256 7.99813 8.80012C7.99813 8.58768 8.08253 8.38394 8.23274 8.23372C8.38296 8.0835 8.5867 7.99911 8.79914 7.99911C9.01159 7.99911 9.21533 8.0835 9.36554 8.23372L11.9991 10.8689L14.6327 8.23372C14.7071 8.15922 14.7953 8.10011 14.8925 8.05978C14.9897 8.01945 15.0939 7.99869 15.1991 7.99869C15.3044 7.99869 15.4086 8.01945 15.5058 8.05978C15.603 8.10011 15.6912 8.16082 15.7655 8.23532Z" fill="black"/>
-                                        </svg>
-                                    </button>
-                                    <label class="answer-label me-2">B.</label>
-                                    <div class="input-wrapper position-relative">
-                                        <input type="text" class="form-control pr-5" placeholder="Masukkan jawaban">
-                                        <button class="btn image-button position-absolute end-0 top-50 translate-middle-y" style="border: none;" onclick="document.getElementById('image-upload').click();">
-                                            <!-- Ikon Upload -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                                                <path d="M4.16732 4.97248H3.93147V5.20833V17.7083V17.9442H4.16732H12.2648V19.5558H4.16732C3.14862 19.5558 2.31983 18.727 2.31983 17.7083V5.20833C2.31983 4.18963 3.14862 3.36085 4.16732 3.36085H17.709C18.7277 3.36085 19.5565 4.18963 19.5565 5.20833V12.2642H17.9448V5.20833V4.97248H17.709H4.16732Z" fill="#4A5568" stroke="#4A5568" stroke-width="0.471698"/>
-                                                <path d="M16.2266 15.3892H5.68068L8.2937 11.9051L9.1647 13.6471L9.33536 13.9885L9.56433 13.6832L12.4893 9.78319L16.2266 15.3892Z" fill="#4A5568" stroke="#4A5568" stroke-width="0.471698"/>
-                                                <path d="M20.8333 15.625H18.75V18.75H15.625V20.8333H18.75V23.9583H20.8333V20.8333H23.9583V18.75H20.8333V15.625Z" fill="#4A5568"/>
-                                            </svg>
-                                        </button>
-                                        <input type="file" id="image-upload" style="display: none;" onchange="handleFileUpload(event)">
-                                    </div>
-                                </div>
-                        </div>
-                        <!-- Button "Tambah jawaban" -->
-                        <div class="container mt-3">
-                            <div>
-                                <button class="btn add-answer-btn" onclick="addAnswer(this)" id="add-answer-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" class="add-answer-icon">
-                                        <path d="M9.28125 7.46875V0.25H7.21875V7.46875H0V9.53125H7.21875V16.75H9.28125V9.53125H16.5V7.46875H9.28125Z" fill="#0056D2"/>
-                                    </svg>
-                                    <span class="add-answer-text">Tambah jawaban</span>
-                                </button>
-                            </div>
-                        </div>
+                </div>
+                <div class="answer-input-group d-flex align-items-center mb-2">
+                    <button class="btn status-button me-2" onclick="toggleAnswerStatus(this)" style="border: none;"></button>
+                    <label class="answer-label me-2">B.</label>
+                    <div class="input-wrapper position-relative">
+                        <input type="text" class="form-control pr-5" placeholder="Masukkan jawaban">
                     </div>
-                    <div class="answers-container" id="essay" style="display: none;">
-                        <textarea class="form-control textarea-jawaban" placeholder="Masukkan jawaban"></textarea>
-                    </div>
-        `;
+                </div>
+            </div>
+            <button class="btn add-answer-btn" onclick="addAnswer(this)" id="add-answer-button">
+                <span class="add-answer-text">Tambah jawaban</span>
+            </button>
+        </div>
+    `;
 
-        questionContainer.appendChild(newCard);
+    questionContainer.appendChild(newCard);
 
+    // Tambahkan event listener untuk tombol dropdown
     document.getElementById(uniqueToggleId).addEventListener('click', function (event) {
         event.stopPropagation();
         const menu = document.getElementById(uniqueMenuId);
         menu.classList.toggle('show');
     });
 
-    document.getElementById(`imageButton-${questionCount}`).addEventListener('click', function () {
-        document.getElementById(`fileInput-${questionCount}`).click();
-    });
-
-    document.getElementById(`fileInput-${questionCount}`).addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const imagePreview = document.getElementById(`imagePreview-${questionCount}`);
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-        event.target.value = '';
-    });
-
-    document.querySelectorAll(`#${uniqueMenuId} li`).forEach(function (item) {
-        item.addEventListener('click', function () {
-            const selectedValue = this.getAttribute('data-value');
-            const selectedIcon = this.getAttribute("data-icon");
-            const dropdownText = document.querySelector(`#${uniqueToggleId} .dropdown-text`);
-            const dropdownIcon = document.querySelector(`#${uniqueToggleId} .dropdown-icon`);
-
-            dropdownText.textContent = this.textContent;
-            dropdownIcon.innerHTML = selectedIcon;
-
-
-            document.getElementById(uniqueMenuId).classList.remove('show');
-
-
-            const multipleChoiceContainer = newCard.querySelector("#multiple-choice");
-            const essayContainer = newCard.querySelector("#essay");
-
-            if (selectedValue === "multiple-choice") {
-                multipleChoiceContainer.style.display = "block";
-                essayContainer.style.display = "none";
-            } else if (selectedValue === "essay") {
-                multipleChoiceContainer.style.display = "none";
-                essayContainer.style.display = "block";
-            }
-
-
-        });
-    });
-    function addAnswer(button) {
-        const answersContainer = button.closest('.answers-container').querySelector('#answers-container');
-        const currentAnswerIndex = answersContainer.querySelectorAll('.answer-input-group').length;
-
-        const maxAnswerIndex = 4; // Maksimal jawaban adalah "E"
-        if (currentAnswerIndex >= maxAnswerIndex) {
-            return; // Hentikan jika sudah mencapai batas
+    // Tambahkan fungsi untuk menambah jawaban
+    newCard.querySelector('#add-answer-button').addEventListener('click', function () {
+        const answersContainer = newCard.querySelector('#answers-container');
+        if (answerIndex > maxAnswerIndex) {
+            alert("Batas maksimum jawaban tercapai.");
+            return;
         }
 
-        const uniqueFileId = `image-upload-${Date.now()}`; // ID unik untuk input file
+        const uniqueFileId = `image-upload-${answerIndex}`;
         const newAnswer = document.createElement('div');
         newAnswer.className = 'answer-input-group d-flex align-items-center mb-2';
         newAnswer.innerHTML = `
-            <button class="btn status-button me-2" onclick="toggleAnswerStatus(this)" style="border: none;">
-                <!-- Ikon SVG Silang -->
-            </button>
-            <label class="answer-label me-2">${String.fromCharCode(65 + currentAnswerIndex)}.</label>
+            <button class="btn status-button me-2" onclick="toggleAnswerStatus(this)" style="border: none;"></button>
+            <label class="answer-label me-2">${String.fromCharCode(65 + answerIndex)}.</label>
             <div class="input-wrapper position-relative">
                 <input type="text" class="form-control pr-5" placeholder="Masukkan jawaban">
-                <button class="btn image-button position-absolute end-0 top-50 translate-middle-y" style="border: none;" onclick="document.getElementById('${uniqueFileId}').click();">
-                    <!-- Ikon Upload -->
-                </button>
+                <button class="btn image-button position-absolute end-0 top-50 translate-middle-y" style="border: none;" onclick="document.getElementById('${uniqueFileId}').click();"></button>
                 <input type="file" id="${uniqueFileId}" style="display: none;" onchange="handleFileUpload(event)">
             </div>
         `;
-
-        // Tambahkan elemen jawaban baru ke dalam container
         answersContainer.appendChild(newAnswer);
-    }
-
-
-
+        answerIndex++;
+    });
 });
+
 
 </script>
 

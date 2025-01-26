@@ -164,22 +164,22 @@
 <div class="container mt-6">
     <div class="card-custom">
       <div class="card-atas-custom">Modul 1</div>
-        <form>
-            <div class="mb-4 horizontal-form">
-                <label for="namaModul" class="label-nama-modul">Nama modul</label>
-                <input type="text" class="form-control input-custom" id="namaModul" placeholder="Pengantar dan Dasar-dasar Pemrograman Java" value="Pengantar dan Dasar-dasar Pemrograman Java">
-            </div>
+      <form>
+        <div class="mb-4 horizontal-form">
+            <label for="namaModul" class="label-nama-modul">Nama modul</label>
+            <input type="text" class="form-control input-custom" id="namaModul" placeholder="Pengantar dan Dasar-dasar Pemrograman Java" value="Pengantar dan Dasar-dasar Pemrograman Java">
+        </div>
 
-            <!-- Deskripsi -->
-            <div class="mb-4 d-flex align-items-start">
-                <label for="deskripsiModul" class="label-horizontal">Deskripsi</label>
-                <textarea class="form-control form-horizontal" id="deskripsiModul" rows="4" placeholder="Masukkan deskripsi modul">Selamat datang di kursus Pemrograman Java untuk Pemula! Kursus ini dirancang untuk memberikan Anda pemahaman yang mendalam tentang bahasa pemrograman Java, yang merupakan salah satu bahasa yang paling banyak digunakan di dunia...</textarea>
-            </div>
+        <!-- Deskripsi -->
+        <div class="mb-4 d-flex align-items-start">
+            <label for="deskripsiModul" class="label-horizontal">Deskripsi</label>
+            <textarea class="form-control form-horizontal" id="deskripsiModul" rows="4" placeholder="Masukkan deskripsi modul">Selamat datang di kursus Pemrograman Java untuk Pemula! Kursus ini dirancang untuk memberikan Anda pemahaman yang mendalam tentang bahasa pemrograman Java, yang merupakan salah satu bahasa yang paling banyak digunakan di dunia...</textarea>
+        </div>
 
 
-            <!-- Konten -->
-            <div>
-                <div class="input-container">
+        <!-- Konten -->
+        <div>
+            <div class="input-container">
                 <label for="kontenModul" class="label-aligned">Konten</label>
                     <div class="container custom-margin-top">
                             <div class="card custom-card-style p-3">
@@ -356,106 +356,239 @@
                                 <a href="#">Pindah ke atas</a>
                                 <a href="#">Pindah ke bawah</a>
                             </div>
-                            <!-- Tombol Tambah -->
+
+                            <div class="cards-container" data-modul="modul1"></div>
+
                             <div class="d-flex mt-3">
-                                <button class="btn d-flex align-items-center tambah-btn-style">
+                                <button class="tambah-modul-btn" data-modul="modul1" type="button">
                                     <i class="bi bi-plus-lg me-2"></i>
                                     Tambah
                                 </button>
                             </div>
-
+                            <!-- Popup Modal -->
+                            <div class="modal-overlay" id="modalOverlay" style="display: none;">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content popup-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="popupModalLabel">Pilih Konten</h5>
+                                            <button type="button" class="btn-close"  id="closeButton"  aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row g-3 content-grid">
+                                                <div class="col-4 content-item">
+                                                    <div class="content-card" data-content="soal">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="44" viewBox="0 0 33 44" fill="none">
+                                                            <path d="M7.52609 11.1105H13.3373M7.52609 22.0854H24.9598M7.52609 28.3567H24.9598M7.52609 34.628H13.3373M4.62047 42.4672H27.8655C28.6361 42.4672 29.3751 42.1368 29.9201 41.5488C30.465 40.9607 30.7711 40.1632 30.7711 39.3315V4.83922C30.7711 4.00759 30.465 3.21002 29.9201 2.62197C29.3751 2.03392 28.6361 1.70355 27.8655 1.70355H4.62047C3.84985 1.70355 3.11079 2.03392 2.56588 2.62197C2.02097 3.21002 1.71484 4.00759 1.71484 4.83922V39.3315C1.71484 40.1632 2.02097 40.9607 2.56588 41.5488C3.11079 42.1368 3.84985 42.4672 4.62047 42.4672Z" stroke="white" stroke-width="2.71659" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M24.9608 11.8944C25.362 11.8944 25.6872 11.5435 25.6872 11.1105C25.6872 10.6776 25.362 10.3266 24.9608 10.3266C24.5596 10.3266 24.2344 10.6776 24.2344 11.1105C24.2344 11.5435 24.5596 11.8944 24.9608 11.8944Z" fill="white" stroke="white" stroke-width="0.848934"/>
+                                                        </svg>
+                                                        <div class="text-label" style="margin-top: 10px;">Soal</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 content-item">
+                                                    <div class="content-card" data-content="video">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="47" height="51" viewBox="0 0 47 51" fill="none">
+                                                            <g clip-path="url(#clip0_1392_2271)">
+                                                            <path d="M0.871382 10.7232C0.871382 8.87879 2.25228 7.4301 3.89608 7.4301H43.6101C45.2539 7.4301 46.6348 8.87879 46.6348 10.7232V41.0375C46.6348 41.9195 46.3099 42.7603 45.7392 43.3761C45.1695 43.991 44.4029 44.3306 43.6101 44.3306H3.89608C3.10326 44.3306 2.33671 43.991 1.76694 43.3761C1.19631 42.7603 0.871382 41.9195 0.871382 41.0375V10.7232ZM44.2207 10.1052L43.9526 10.3536L44.2207 10.1052C44.0638 9.93592 43.8449 9.83502 43.6101 9.83502H3.89608C3.66131 9.83502 3.44236 9.93592 3.28551 10.1052C3.12953 10.2735 3.04624 10.4962 3.04624 10.7232V41.0375C3.04624 41.5012 3.40114 41.9257 3.89608 41.9257H43.6101C43.8449 41.9257 44.0638 41.8248 44.2207 41.6556C44.3767 41.4872 44.4599 41.2645 44.4599 41.0375V10.7232C44.4599 10.4962 44.3767 10.2735 44.2207 10.1052Z" fill="white" stroke="white" stroke-width="0.731045"/>
+                                                            <path d="M30.0274 25.301L30.027 25.3007L19.225 17.8101C19.225 17.8101 19.225 17.8101 19.225 17.81C19.1345 17.7474 19.0328 17.7139 18.9304 17.71C18.8281 17.706 18.725 17.7317 18.6316 17.7867C18.5379 17.8419 18.4561 17.9254 18.3976 18.0315C18.3391 18.1376 18.3072 18.2608 18.3069 18.3879V33.3734V33.3752C18.3072 33.5023 18.3391 33.6255 18.3976 33.7316L18.0775 33.9081L18.3976 33.7316C18.4561 33.8377 18.5379 33.9212 18.6316 33.9764C18.725 34.0314 18.8281 34.0571 18.9304 34.0531C19.0327 34.0492 19.1344 34.0157 19.2248 33.9532L30.0274 25.301ZM30.0274 25.301C30.1123 25.3597 30.185 25.4425 30.2366 25.5441C30.2881 25.6459 30.3159 25.7616 30.3159 25.8805C30.3159 25.9994 30.2881 26.1152 30.2366 26.2169C30.185 26.3185 30.1123 26.4013 30.0274 26.46L30.027 26.4603L19.225 33.953L30.0274 25.301Z" fill="white" stroke="white" stroke-width="0.731045"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_1392_2271">
+                                                                <rect width="46.4945" height="50.1755" fill="white" transform="translate(0.505859 0.792725)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                        <div class="text-label" style="margin-top: 10px;">Video</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 content-item">
+                                                    <div class="content-card" data-content="file">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                            <path d="M18.5168 27.1802H34.4831V24.9718H18.5168V27.1802ZM18.5168 33.295H34.4831V31.0867H18.5168V33.295ZM18.5168 39.4121H27.8581V37.2038H18.5168V39.4121ZM14.6081 46.375C13.5923 46.375 12.7443 46.0349 12.0641 45.3547C11.3839 44.6746 11.0431 43.8258 11.0416 42.8085V10.1915C11.0416 9.17562 11.3824 8.32763 12.0641 7.64746C12.7457 6.96729 13.5945 6.62647 14.6103 6.625H32.0208L41.9583 16.5625V42.8085C41.9583 43.8244 41.6182 44.6731 40.938 45.3547C40.2579 46.0364 39.4084 46.3765 38.3896 46.375H14.6081ZM30.9166 17.6667V8.83333H14.6103C14.2702 8.83333 13.9581 8.97467 13.674 9.25733C13.3898 9.54 13.2485 9.85137 13.25 10.1915V42.8085C13.25 43.1472 13.3913 43.4585 13.674 43.7427C13.9566 44.0268 14.268 44.1681 14.6081 44.1667H38.3918C38.7304 44.1667 39.0418 44.0253 39.326 43.7427C39.6101 43.46 39.7514 43.1479 39.75 42.8063V17.6667H30.9166Z" fill="white"/>
+                                                        </svg>
+                                                        <div class="text-label" style="margin-top: 10px;">File</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 content-item">
+                                                    <div class="content-card" data-content="link">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 47 51" fill="none">
+                                                            <path d="M14.0653 18.9608C10.4794 18.9608 7.62109 22.0953 7.62109 25.8805C7.62109 29.6656 10.4794 32.8001 14.0653 32.8001H21.3757V35.8951H14.0653C8.99151 35.8951 4.81753 31.4405 4.81753 25.8805C4.81753 20.3205 8.99151 15.8659 14.0653 15.8659H21.3757V18.9608H14.0653ZM31.0621 24.2284V27.5325H16.4412V24.2284H31.0621ZM33.438 35.8951H26.1275V32.8001H33.438C37.0238 32.8001 39.8821 29.6656 39.8821 25.8805C39.8821 22.0953 37.0238 18.9608 33.438 18.9608H26.1275V15.8659H33.438C38.5117 15.8659 42.6857 20.3205 42.6857 25.8805C42.6857 31.4405 38.5117 35.8951 33.438 35.8951Z" fill="white" stroke="white"/>
+                                                        </svg>
+                                                        <div class="text-label" style="margin-top: 10px;">Link</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 content-item">
+                                                    <div class="content-card" data-content="catatan">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                            <path d="M12.402 41.9583H30.9167V30.9167H41.9584V12.402C41.9584 12.0045 41.831 11.6784 41.5763 11.4237C41.3216 11.169 40.9963 11.0417 40.6002 11.0417H12.3998C12.0038 11.0417 11.6784 11.169 11.4237 11.4237C11.1691 11.6784 11.0417 12.0045 11.0417 12.402V40.6002C11.0417 40.9962 11.1691 41.3216 11.4237 41.5763C11.6784 41.831 12.0045 41.9583 12.402 41.9583ZM12.402 44.1667C11.4127 44.1667 10.5706 43.8192 9.87571 43.1243C9.18082 42.4295 8.83337 41.5881 8.83337 40.6002V12.3998C8.83337 11.4134 9.18082 10.572 9.87571 9.87568C10.5706 9.18079 11.4127 8.83334 12.402 8.83334H40.6002C41.5866 8.83334 42.428 9.18079 43.1244 9.87568C43.8193 10.5706 44.1667 11.4127 44.1667 12.402V31.5549L31.5527 44.1667H12.402ZM17.4127 29.7264V27.5181H26.5V29.7264H17.4127ZM17.4127 20.9792V18.7708H35.5873V20.9792H17.4127Z" fill="white"/>
+                                                        </svg>
+                                                        <div class="text-label" style="margin-top: 10px;">Catatan</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 content-item">
+                                                    <div class="content-card" data-content="tugas">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                            <path d="M25.3958 39.2421H27.6041V28.874L32.2416 33.5115L33.8051 31.9369L26.5 24.6318L19.1948 31.9369L20.7715 33.4982L25.3958 28.874V39.2421ZM14.6103 46.375C13.593 46.375 12.7443 46.0349 12.0641 45.3547C11.3839 44.6746 11.0431 43.8258 11.0416 42.8085V10.1915C11.0416 9.17562 11.3824 8.32763 12.0641 7.64746C12.7457 6.96729 13.5945 6.62647 14.6103 6.625H32.0208L41.9583 16.5625V42.8085C41.9583 43.8244 41.6182 44.6731 40.938 45.3547C40.2579 46.0364 39.4084 46.3765 38.3896 46.375H14.6103ZM30.9166 17.6667V8.83333H14.6103C14.2702 8.83333 13.9581 8.97467 13.674 9.25733C13.3898 9.54 13.2485 9.85137 13.25 10.1915V42.8085C13.25 43.1472 13.3913 43.4585 13.674 43.7427C13.9566 44.0268 14.268 44.1681 14.6081 44.1667H38.3918C38.7304 44.1667 39.0418 44.0253 39.326 43.7427C39.6101 43.46 39.7514 43.1479 39.75 42.8063V17.6667H30.9166Z" fill="white"/>
+                                                        </svg>
+                                                        <div class="text-label" style="margin-top: 10px;">Tugas</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                </div>
             </div>
-        </form>
+        </div>
+    </form>
     </div>
 </div>
-<div class="container mt-6">
+
+<div class="container mt-6"  id="cardContainer">
     <div class="card-custom">
       <div class="card-atas-custom">Modul 2</div>
-        <form>
-            <div class="mb-4 horizontal-form">
-                <label for="namaModul" class="label-nama-modul">Nama modul</label>
-                <input type="text" class="form-control input-custom" id="namaModul" placeholder="Masukkan nama modul">
-            </div>
+      <form>
+        <div class="mb-4 horizontal-form">
+            <label for="namaModul" class="label-nama-modul">Nama modul</label>
+            <input type="text" class="form-control input-custom" id="namaModul" placeholder="Masukkan nama modul">
+        </div>
 
-            <!-- Deskripsi -->
-            <div class="mb-4 d-flex align-items-start">
-                <label for="deskripsiModul" class="label-horizontal">Deskripsi</label>
-                <textarea class="form-control form-horizontal" id="deskripsiModul" rows="4" placeholder="Masukkan deskripsi modul"></textarea>
-            </div>
+        <!-- Deskripsi -->
+        <div class="mb-4 d-flex align-items-start">
+            <label for="deskripsiModul" class="label-horizontal">Deskripsi</label>
+            <textarea class="form-control form-horizontal" id="deskripsiModul" rows="4" placeholder="Masukkan deskripsi modul"></textarea>
+        </div>
 
 
-            <!-- Konten -->
-            <div>
-                <div class="input-container">
-                <label for="kontenModul" class="label-aligned">Konten</label>
-                    <div class="container custom-margin-top">
-                        <div class="card custom-card-style p-3">
-                            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
-                                <i class="bi bi-three-dots-vertical"></i>
-                            </button>
+        <!-- Konten -->
+        <div>
+            <div class="input-container">
+            <label for="kontenModul" class="label-aligned">Konten</label>
+                <div class="container custom-margin-top">
+                    <div class="card custom-card-style p-3">
+                        <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
 
-                            <div class="mb-3">
-                                <input
-                                    type="text"
-                                    class="form-control module-input-style"
-                                    id="materi1"
-                                    placeholder="Masukkan judul materi">
+                        <div class="mb-3">
+                            <input
+                                type="text"
+                                class="form-control module-input-style"
+                                id="materi1"
+                                placeholder="Masukkan judul materi">
+                        </div>
+                        <div class="mb-3 d-flex align-items-center">
+                            <label for="videoFile" class="label-new-style1">Video</label>
+                            <div class="custom-file-input">
+                                <input type="file" id="fileInput" class="custom-file-input-style" onchange="updateFileName()" />
+                                <button class="btn btn-primary">Choose file</button>
+                                <span id="fileName">No file chosen</span>
                             </div>
-                            <div class="mb-3 d-flex align-items-center">
-                                <label for="videoFile" class="label-new-style1">Video</label>
-                                <div class="custom-file-input">
-                                    <input type="file" id="fileInput" class="custom-file-input-style" onchange="updateFileName()" />
-                                    <button class="btn btn-primary">Choose file</button>
-                                    <span id="fileName">No file chosen</span>
+                            <input type="text" class="custom-link-masukkan" placeholder="Link URL">
+                        </div>
+
+                        <div class="d-flex align-items-center">
+                            <label for="forumStatus" class="label-new-style2">Forum</label>
+                            <select class="form-select" id="forumStatus">
+                            <option value="aktif" selected>Aktif</option>
+                            <option value="nonaktif">Nonaktif</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="cards-container" data-modul="modul2"></div>
+
+                    <div class="d-flex mt-3">
+                        <button class="tambah-modul-btn" data-modul="modul2" type="button">
+                            <i class="bi bi-plus-lg me-2"></i>
+                            Tambah
+                        </button>
+                    </div>
+                    <!-- Popup Modal -->
+                    <div class="modal-overlay" id="modalOverlay" style="display: none;">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content popup-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="popupModalLabel">Pilih Konten</h5>
+                                    <button type="button" class="btn-close"  id="closeButton"  aria-label="Close"></button>
                                 </div>
-                                <input type="text" class="custom-link-masukkan" placeholder="Link URL">
-                            </div>
-
-                            <div class="d-flex align-items-center">
-                                <label for="forumStatus" class="label-new-style2">Forum</label>
-                                <select class="form-select" id="forumStatus">
-                                <option value="aktif" selected>Aktif</option>
-                                <option value="nonaktif">Nonaktif</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Tombol Tambah -->
-                        <div class="d-flex mt-3">
-                            <button class="tambah-modul-btn">
-                                <i class="bi bi-plus-lg me-2"></i>
-                                Tambah
-                            </button>
-                        </div>
-                        <!-- Popup Modal -->
-                        <div class="popup-modal" id="popupModal">
-                            <div class="popup-content">
-                                <span class="close-button" id="closeButton">&times;</span>
-                                <h2>Pilih Konten</h2>
-                                <div class="content-grid">
-                                    <button class="content-item">Soal</button>
-                                    <button class="content-item">Video</button>
-                                    <button class="content-item">File</button>
-                                    <button class="content-item">Link</button>
-                                    <button class="content-item">Catatan</button>
-                                    <button class="content-item">Tugas</button>
+                                <div class="modal-body">
+                                    <div class="row g-3 content-grid">
+                                        <div class="col-4 content-item">
+                                            <div class="content-card" data-content="soal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="44" viewBox="0 0 33 44" fill="none">
+                                                    <path d="M7.52609 11.1105H13.3373M7.52609 22.0854H24.9598M7.52609 28.3567H24.9598M7.52609 34.628H13.3373M4.62047 42.4672H27.8655C28.6361 42.4672 29.3751 42.1368 29.9201 41.5488C30.465 40.9607 30.7711 40.1632 30.7711 39.3315V4.83922C30.7711 4.00759 30.465 3.21002 29.9201 2.62197C29.3751 2.03392 28.6361 1.70355 27.8655 1.70355H4.62047C3.84985 1.70355 3.11079 2.03392 2.56588 2.62197C2.02097 3.21002 1.71484 4.00759 1.71484 4.83922V39.3315C1.71484 40.1632 2.02097 40.9607 2.56588 41.5488C3.11079 42.1368 3.84985 42.4672 4.62047 42.4672Z" stroke="white" stroke-width="2.71659" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M24.9608 11.8944C25.362 11.8944 25.6872 11.5435 25.6872 11.1105C25.6872 10.6776 25.362 10.3266 24.9608 10.3266C24.5596 10.3266 24.2344 10.6776 24.2344 11.1105C24.2344 11.5435 24.5596 11.8944 24.9608 11.8944Z" fill="white" stroke="white" stroke-width="0.848934"/>
+                                                </svg>
+                                                <div class="text-label" style="margin-top: 10px;">Soal</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 content-item">
+                                            <div class="content-card" data-content="video">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="47" height="51" viewBox="0 0 47 51" fill="none">
+                                                    <g clip-path="url(#clip0_1392_2271)">
+                                                    <path d="M0.871382 10.7232C0.871382 8.87879 2.25228 7.4301 3.89608 7.4301H43.6101C45.2539 7.4301 46.6348 8.87879 46.6348 10.7232V41.0375C46.6348 41.9195 46.3099 42.7603 45.7392 43.3761C45.1695 43.991 44.4029 44.3306 43.6101 44.3306H3.89608C3.10326 44.3306 2.33671 43.991 1.76694 43.3761C1.19631 42.7603 0.871382 41.9195 0.871382 41.0375V10.7232ZM44.2207 10.1052L43.9526 10.3536L44.2207 10.1052C44.0638 9.93592 43.8449 9.83502 43.6101 9.83502H3.89608C3.66131 9.83502 3.44236 9.93592 3.28551 10.1052C3.12953 10.2735 3.04624 10.4962 3.04624 10.7232V41.0375C3.04624 41.5012 3.40114 41.9257 3.89608 41.9257H43.6101C43.8449 41.9257 44.0638 41.8248 44.2207 41.6556C44.3767 41.4872 44.4599 41.2645 44.4599 41.0375V10.7232C44.4599 10.4962 44.3767 10.2735 44.2207 10.1052Z" fill="white" stroke="white" stroke-width="0.731045"/>
+                                                    <path d="M30.0274 25.301L30.027 25.3007L19.225 17.8101C19.225 17.8101 19.225 17.8101 19.225 17.81C19.1345 17.7474 19.0328 17.7139 18.9304 17.71C18.8281 17.706 18.725 17.7317 18.6316 17.7867C18.5379 17.8419 18.4561 17.9254 18.3976 18.0315C18.3391 18.1376 18.3072 18.2608 18.3069 18.3879V33.3734V33.3752C18.3072 33.5023 18.3391 33.6255 18.3976 33.7316L18.0775 33.9081L18.3976 33.7316C18.4561 33.8377 18.5379 33.9212 18.6316 33.9764C18.725 34.0314 18.8281 34.0571 18.9304 34.0531C19.0327 34.0492 19.1344 34.0157 19.2248 33.9532L30.0274 25.301ZM30.0274 25.301C30.1123 25.3597 30.185 25.4425 30.2366 25.5441C30.2881 25.6459 30.3159 25.7616 30.3159 25.8805C30.3159 25.9994 30.2881 26.1152 30.2366 26.2169C30.185 26.3185 30.1123 26.4013 30.0274 26.46L30.027 26.4603L19.225 33.953L30.0274 25.301Z" fill="white" stroke="white" stroke-width="0.731045"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_1392_2271">
+                                                        <rect width="46.4945" height="50.1755" fill="white" transform="translate(0.505859 0.792725)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                                <div class="text-label" style="margin-top: 10px;">Video</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 content-item">
+                                            <div class="content-card" data-content="file">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                    <path d="M18.5168 27.1802H34.4831V24.9718H18.5168V27.1802ZM18.5168 33.295H34.4831V31.0867H18.5168V33.295ZM18.5168 39.4121H27.8581V37.2038H18.5168V39.4121ZM14.6081 46.375C13.5923 46.375 12.7443 46.0349 12.0641 45.3547C11.3839 44.6746 11.0431 43.8258 11.0416 42.8085V10.1915C11.0416 9.17562 11.3824 8.32763 12.0641 7.64746C12.7457 6.96729 13.5945 6.62647 14.6103 6.625H32.0208L41.9583 16.5625V42.8085C41.9583 43.8244 41.6182 44.6731 40.938 45.3547C40.2579 46.0364 39.4084 46.3765 38.3896 46.375H14.6081ZM30.9166 17.6667V8.83333H14.6103C14.2702 8.83333 13.9581 8.97467 13.674 9.25733C13.3898 9.54 13.2485 9.85137 13.25 10.1915V42.8085C13.25 43.1472 13.3913 43.4585 13.674 43.7427C13.9566 44.0268 14.268 44.1681 14.6081 44.1667H38.3918C38.7304 44.1667 39.0418 44.0253 39.326 43.7427C39.6101 43.46 39.7514 43.1479 39.75 42.8063V17.6667H30.9166Z" fill="white"/>
+                                                </svg>
+                                                <div class="text-label" style="margin-top: 10px;">File</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 content-item">
+                                            <div class="content-card" data-content="link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 47 51" fill="none">
+                                                    <path d="M14.0653 18.9608C10.4794 18.9608 7.62109 22.0953 7.62109 25.8805C7.62109 29.6656 10.4794 32.8001 14.0653 32.8001H21.3757V35.8951H14.0653C8.99151 35.8951 4.81753 31.4405 4.81753 25.8805C4.81753 20.3205 8.99151 15.8659 14.0653 15.8659H21.3757V18.9608H14.0653ZM31.0621 24.2284V27.5325H16.4412V24.2284H31.0621ZM33.438 35.8951H26.1275V32.8001H33.438C37.0238 32.8001 39.8821 29.6656 39.8821 25.8805C39.8821 22.0953 37.0238 18.9608 33.438 18.9608H26.1275V15.8659H33.438C38.5117 15.8659 42.6857 20.3205 42.6857 25.8805C42.6857 31.4405 38.5117 35.8951 33.438 35.8951Z" fill="white" stroke="white"/>
+                                                </svg>
+                                                <div class="text-label" style="margin-top: 10px;">Link</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 content-item">
+                                            <div class="content-card" data-content="catatan">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                    <path d="M12.402 41.9583H30.9167V30.9167H41.9584V12.402C41.9584 12.0045 41.831 11.6784 41.5763 11.4237C41.3216 11.169 40.9963 11.0417 40.6002 11.0417H12.3998C12.0038 11.0417 11.6784 11.169 11.4237 11.4237C11.1691 11.6784 11.0417 12.0045 11.0417 12.402V40.6002C11.0417 40.9962 11.1691 41.3216 11.4237 41.5763C11.6784 41.831 12.0045 41.9583 12.402 41.9583ZM12.402 44.1667C11.4127 44.1667 10.5706 43.8192 9.87571 43.1243C9.18082 42.4295 8.83337 41.5881 8.83337 40.6002V12.3998C8.83337 11.4134 9.18082 10.572 9.87571 9.87568C10.5706 9.18079 11.4127 8.83334 12.402 8.83334H40.6002C41.5866 8.83334 42.428 9.18079 43.1244 9.87568C43.8193 10.5706 44.1667 11.4127 44.1667 12.402V31.5549L31.5527 44.1667H12.402ZM17.4127 29.7264V27.5181H26.5V29.7264H17.4127ZM17.4127 20.9792V18.7708H35.5873V20.9792H17.4127Z" fill="white"/>
+                                                </svg>
+                                                <div class="text-label" style="margin-top: 10px;">Catatan</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 content-item">
+                                            <div class="content-card" data-content="tugas">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                    <path d="M25.3958 39.2421H27.6041V28.874L32.2416 33.5115L33.8051 31.9369L26.5 24.6318L19.1948 31.9369L20.7715 33.4982L25.3958 28.874V39.2421ZM14.6103 46.375C13.593 46.375 12.7443 46.0349 12.0641 45.3547C11.3839 44.6746 11.0431 43.8258 11.0416 42.8085V10.1915C11.0416 9.17562 11.3824 8.32763 12.0641 7.64746C12.7457 6.96729 13.5945 6.62647 14.6103 6.625H32.0208L41.9583 16.5625V42.8085C41.9583 43.8244 41.6182 44.6731 40.938 45.3547C40.2579 46.0364 39.4084 46.3765 38.3896 46.375H14.6103ZM30.9166 17.6667V8.83333H14.6103C14.2702 8.83333 13.9581 8.97467 13.674 9.25733C13.3898 9.54 13.2485 9.85137 13.25 10.1915V42.8085C13.25 43.1472 13.3913 43.4585 13.674 43.7427C13.9566 44.0268 14.268 44.1681 14.6081 44.1667H38.3918C38.7304 44.1667 39.0418 44.0253 39.326 43.7427C39.6101 43.46 39.7514 43.1479 39.75 42.8063V17.6667H30.9166Z" fill="white"/>
+                                                </svg>
+                                                <div class="text-label" style="margin-top: 10px;">Tugas</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
     </div>
 </div>
+
+
 <div class="container mt-6">
-    <div class="card-custom">
-        <div class="d-flex mt-3">
-            <button class="btn tambah-modul-btn d-flex align-items-center">
+    <div class="card-custom d-flex align-items-center">
+        <div class="d-flex">
+            <button class="btn tambah-modul-btn-blue d-flex align-items-center" id="addModuleButton" type="button">
                 <i class="bi bi-plus-lg me-2"></i>
                 Tambah Modul
             </button>
@@ -1087,54 +1220,115 @@ select.adjust-select option {
     color: #666;
 }
 
-.popup-modal {
-    display: none;
+
+.modal-header {
+    padding: 10px 40px;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Modal overlay styling */
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Transparansi latar belakang */
+    display: flex; /* Gunakan Flexbox */
+    justify-content: center; /* Pusatkan secara horizontal */
+    align-items: center; /* Pusatkan secara vertikal */
+    z-index: 1050; /* Pastikan modal berada di atas konten lainnya */
+}
+
+/* Styling modal content */
+.popup-content {
+    background-color: #fff;
+    border-radius: 20px;
+    width: 600px;
+    height: 380px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex; /* Gunakan Flexbox untuk konten di dalam modal */
+}
+.modal-body {
+    display: flex; /* Aktifkan Flexbox */
+    justify-content: center; /* Pusatkan secara horizontal */
+    align-items: center; /* Pusatkan secara vertikal */
+    height: 100%; /* Pastikan tinggi elemen diatur */
+    text-align: center; /* Tambahan untuk teks */
+}
+
+
+.content-card {
+    background-color: #0056D2; /* Warna biru */
+    color: #fff; /* Warna teks putih */
+    width: 100px; /* Sesuaikan ukuran */
+    height: 100px; /* Sesuaikan ukuran */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px; /* Membuat sudut melengkung */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Efek bayangan */
+    text-align: center;
+    font-size: 14px; /* Ukuran font */
+    cursor: pointer; /* Mengubah kursor menjadi pointer */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efek animasi */
+}
+
+.content-card:hover {
+
+    background-color: #003D94; /* Warna latar belakang saat hover */
+}
+
+.content-card i {
+    font-size: 24px; /* Ukuran ikon */
+    margin-bottom: 8px; /* Jarak antara ikon dan teks */
+}
+
+.tambah-modul-btn-blue {
+
+  color: #0056D2;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tambah-modul-btn-blue:hover {
+  color: #0041a8; /* Warna saat hover */
+}
+
+/* Grid container */
+.content-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 80px;
+}
+
+/* Item dalam grid */
+.content-item {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.content-item {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+.module-input-style {
+  font-size: 12.226px;
+  font-weight: 400;
+  width: 597px;
+  border-radius: 8.733px;
 }
 
 </style>
 
 <script>
+
+
 // JavaScript to handle toggle effect
 document.querySelectorAll('.toggle-btn').forEach(button => {
     button.addEventListener('click', () => {
@@ -1193,38 +1387,524 @@ document.querySelectorAll('.toggle-dropdown').forEach(button => {
   });
 });
 
-// Klik di luar dropdown untuk menutup semuanya
-document.addEventListener('click', function (e) {
-  const modal = document.querySelector('#kontenModal');
-  if (modal && modal.contains(e.target)) {
-    // Klik di dalam modal, jangan lakukan apa-apa
-    return;
-  }
-  if (!e.target.closest('.toggle-dropdown') && !e.target.closest('.custom-dropdown')) {
-    document.querySelectorAll('.custom-dropdown').forEach(d => (d.style.display = 'none'));
-  }
+
+// Ambil semua tombol dengan class 'tambah-modul-btn'
+const tambahButtons = document.querySelectorAll(".tambah-modul-btn");
+// Ambil elemen modal dan tombol close
+const modalOverlay = document.getElementById("modalOverlay");
+const closeButton = document.getElementById("closeButton");
+// Container untuk menambahkan konten
+const cardsContainer = document.getElementById("cardsContainer");
+
+// Template untuk setiap card
+const templates = {
+    soal: `
+        <div class="card custom-card-style p-3">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <!-- Dropdown -->
+            <select class="form-select custom-dropdownn">
+                <option selected>Pilih soal</option>
+                <option value="1">Soal 1</option>
+                <option value="2">Soal 2</option>
+                <option value="3">Soal 3</option>
+            </select>
+            <!-- Tombol -->
+            <button class="btn custom-button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Buat Soal
+            </button>
+        </div>
+    `,
+    file: `
+        <div class="card custom-card-style p-3">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <div class="mb-3">
+                <input
+                    type="text"
+                    class="form-control module-input-style"
+                    placeholder="Masukkan judul materi">
+            </div>
+            <div class="mb-3 d-flex align-items-center">
+                <label class="label-new-style1">File</label>
+                <div class="custom-file-input">
+                    <input type="file" class="custom-file-input-style" />
+                    <button class="btn btn-primary">Choose file</button>
+                    <span>no file chosen</span>
+                </div>
+            </div>
+        </div>
+    `,
+    video: `
+        <div class="card custom-card-style p-3">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <div class="mb-3">
+                <input
+                    type="text"
+                    class="form-control module-input-style"
+                    placeholder="Masukkan judul materi">
+            </div>
+            <div class="mb-3 d-flex align-items-center">
+                <label class="label-new-style1">Video</label>
+                <div class="custom-file-input">
+                    <input type="file" class="custom-file-input-style" />
+                    <button class="btn btn-primary">Choose file</button>
+                    <span>no file chosen</span>
+                </div>
+                <input type="text" class="custom-link-masukkan" placeholder="Link URL">
+            </div>
+        </div>
+    `,
+    link: `
+        <div class="card custom-card-style p-3">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+
+            <div class="mb-3">
+                <input
+                    type="text"
+                    class="form-control module-input-style"
+                    id="materi1"
+                    placeholder="Masukkan nama catatan">
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control form-horizontal" rows="4" placeholder="Masukkan deskripsi"></textarea>
+            </div>
+
+            <div class="mb-3 d-flex align-items-center">
+                <label for="videoFile" class="label-new-style1">Link</label>
+
+                <input type="text" class="custom-link-masukkan" placeholder="Link URL">
+            </div>
+        </div>
+        `,
+    catatan: `
+        <div class="card custom-card-style p-3">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+
+            <div class="mb-3">
+                <input
+                    type="text"
+                    class="form-control module-input-style"
+                    id="materi1"
+                    placeholder="Masukkan judul">
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control form-horizontal" rows="4" placeholder="Masukkan catatan"></textarea>
+            </div>
+
+        </div>
+    `,
+    tugas: `
+        <div class="card custom-card-style p-3">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+
+            <div class="mb-3">
+                <input
+                    type="text"
+                    class="form-control module-input-style"
+                    id="materi1"
+                    placeholder="Masukkan nama tugas">
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control form-horizontal" rows="4" placeholder="Masukkan deskripsi"></textarea>
+            </div>
+            <div class="d-flex align-items-center">
+                <label for="forumStatus" class="label-new-style2">Format </label>
+                <select class="form-select" id="forumStatus">
+                <option value="aktif" selected>Semua</option>
+                <option value="nonaktif">PDF</option>
+                <option value="nonaktif">DOCX</option>
+                <option value="nonaktif">ZIP</option>
+                </select>
+            </div>
+        </div>
+    `,
+};
+let activeModul = null;
+
+// Tambahkan event listener ke setiap tombol "Tambah"
+tambahButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        // Ambil data modul dari tombol yang diklik
+        activeModul = button.dataset.modul;
+        // Tampilkan modal
+        modalOverlay.style.display = "flex";
+    });
+});
+// Event untuk menutup modal
+closeButton.addEventListener("click", () => {
+    modalOverlay.style.display = "none";
+    activeModul = null; // Reset modul aktif
 });
 
-document.getElementById("tambahButton").addEventListener("click", function () {
-    document.getElementById("popupModal").style.display = "flex";
-});
-document.getElementById("closeButton").addEventListener("click", function () {
-    document.getElementById("popupModal").style.display = "none";
-});
-// Close modal when clicking outside the content
-window.addEventListener("click", function (event) {
-    const modal = document.getElementById("popupModal");
-    if (event.target === modal) {
-        modal.style.display = "none";
+// Delegasi event pada modal untuk memilih konten
+modalOverlay.addEventListener("click", (event) => {
+    const contentCard = event.target.closest(".content-card");
+    if (contentCard) {
+        const contentType = contentCard.getAttribute("data-content");
+        addCard(contentType, activeModul); // Panggil fungsi dengan modul aktif
+        modalOverlay.style.display = "none"; // Tutup modal
     }
 });
 
+// Fungsi untuk menambahkan konten ke dalam container
+function addCard(type, modul) {
+    const template = templates[type];
+    if (template) {
+        const container = document.querySelector(`.cards-container[data-modul="${modul}"]`);
+        if (container) {
+            const div = document.createElement("div");
+            div.innerHTML = template;
+            container.appendChild(div.firstElementChild);
+        } else {
+            console.error("Container tidak ditemukan untuk modul:", modul);
+        }
+    } else {
+        console.error("Template tidak ditemukan untuk tipe:", type);
+    }
+}
 
 
 
 
+let moduleCounter = 2; // Inisialisasi counter modul
+document.getElementById("addModuleButton").addEventListener("click", function () {
+    moduleCounter++;
+
+    const newModuleHTML = `
+        <div class="card-custom mt-5" id="module${moduleCounter}">
+            <div class="card-atas-custom">Modul ${moduleCounter}</div>
+            <form>
+                <div class="mb-4 horizontal-form">
+                <label for="namaModul" class="label-nama-modul">Nama modul</label>
+                <input type="text" class="form-control input-custom" id="namaModul" placeholder="Masukkan nama modul">
+            </div>
+
+            <!-- Deskripsi -->
+            <div class="mb-4 d-flex align-items-start">
+                <label for="deskripsiModul" class="label-horizontal">Deskripsi</label>
+                <textarea class="form-control form-horizontal" id="deskripsiModul" rows="4" placeholder="Masukkan deskripsi modul"></textarea>
+            </div>
+                <div class="input-container">
+                    <label for="kontenModul${moduleCounter}" class="label-aligned">Konten</label>
+                    <div class="container custom-margin-top" id="card-container${moduleCounter}">
+                        <div class="card custom-card-style p-3">
+                            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+
+                            <div class="mb-3">
+                                <input
+                                    type="text"
+                                    class="form-control module-input-style"
+                                    id="materi1"
+                                    placeholder="Masukkan judul materi">
+                            </div>
+                            <div class="mb-3 d-flex align-items-center">
+                                <label for="videoFile" class="label-new-style1">File</label>
+                                <div class="custom-file-input">
+                                    <input type="file" id="fileInput" class="custom-file-input-style" onchange="updateFileName()" />
+                                    <button class="btn btn-primary">Choose file</button>
+                                    <span id="fileName">no file chosen</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <label for="forumStatus" class="label-new-style2">Forum</label>
+                                <select class="form-select" id="forumStatus">
+                                <option value="aktif" selected>Aktif</option>
+                                <option value="nonaktif">Nonaktif</option>
+                                </select>
+                            </div>
+                        </div>
 
 
+                        <div id="cardsContainer${moduleCounter}"></div>
+                        <!-- Tombol Tambah -->
+                        <div class="d-flex mt-3">
+                            <button class="tambah-modul-btn" id="tambahButton${moduleCounter}" type="button">
+                                <i class="bi bi-plus-lg me-2"></i> Tambah
+                            </button>
+                        </div>
+                        <!-- Popup Modal -->
+                        <div class="modal-overlay" id="modalOverlay${moduleCounter}" style="display: none;">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content popup-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="popupModalLabel">Pilih Konten</h5>
+                                        <button type="button" class="btn-close" id="closeButton${moduleCounter}" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                         <div class="row g-3 content-grid">
+                                            <div class="col-4 content-item">
+                                                <div class="content-card" data-content="soal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="44" viewBox="0 0 33 44" fill="none">
+                                                        <path d="M7.52609 11.1105H13.3373M7.52609 22.0854H24.9598M7.52609 28.3567H24.9598M7.52609 34.628H13.3373M4.62047 42.4672H27.8655C28.6361 42.4672 29.3751 42.1368 29.9201 41.5488C30.465 40.9607 30.7711 40.1632 30.7711 39.3315V4.83922C30.7711 4.00759 30.465 3.21002 29.9201 2.62197C29.3751 2.03392 28.6361 1.70355 27.8655 1.70355H4.62047C3.84985 1.70355 3.11079 2.03392 2.56588 2.62197C2.02097 3.21002 1.71484 4.00759 1.71484 4.83922V39.3315C1.71484 40.1632 2.02097 40.9607 2.56588 41.5488C3.11079 42.1368 3.84985 42.4672 4.62047 42.4672Z" stroke="white" stroke-width="2.71659" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M24.9608 11.8944C25.362 11.8944 25.6872 11.5435 25.6872 11.1105C25.6872 10.6776 25.362 10.3266 24.9608 10.3266C24.5596 10.3266 24.2344 10.6776 24.2344 11.1105C24.2344 11.5435 24.5596 11.8944 24.9608 11.8944Z" fill="white" stroke="white" stroke-width="0.848934"/>
+                                                      </svg>
+                                                      <div class="text-label" style="margin-top: 10px;">Soal</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 content-item">
+                                                <div class="content-card" data-content="video">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="47" height="51" viewBox="0 0 47 51" fill="none">
+                                                        <g clip-path="url(#clip0_1392_2271)">
+                                                          <path d="M0.871382 10.7232C0.871382 8.87879 2.25228 7.4301 3.89608 7.4301H43.6101C45.2539 7.4301 46.6348 8.87879 46.6348 10.7232V41.0375C46.6348 41.9195 46.3099 42.7603 45.7392 43.3761C45.1695 43.991 44.4029 44.3306 43.6101 44.3306H3.89608C3.10326 44.3306 2.33671 43.991 1.76694 43.3761C1.19631 42.7603 0.871382 41.9195 0.871382 41.0375V10.7232ZM44.2207 10.1052L43.9526 10.3536L44.2207 10.1052C44.0638 9.93592 43.8449 9.83502 43.6101 9.83502H3.89608C3.66131 9.83502 3.44236 9.93592 3.28551 10.1052C3.12953 10.2735 3.04624 10.4962 3.04624 10.7232V41.0375C3.04624 41.5012 3.40114 41.9257 3.89608 41.9257H43.6101C43.8449 41.9257 44.0638 41.8248 44.2207 41.6556C44.3767 41.4872 44.4599 41.2645 44.4599 41.0375V10.7232C44.4599 10.4962 44.3767 10.2735 44.2207 10.1052Z" fill="white" stroke="white" stroke-width="0.731045"/>
+                                                          <path d="M30.0274 25.301L30.027 25.3007L19.225 17.8101C19.225 17.8101 19.225 17.8101 19.225 17.81C19.1345 17.7474 19.0328 17.7139 18.9304 17.71C18.8281 17.706 18.725 17.7317 18.6316 17.7867C18.5379 17.8419 18.4561 17.9254 18.3976 18.0315C18.3391 18.1376 18.3072 18.2608 18.3069 18.3879V33.3734V33.3752C18.3072 33.5023 18.3391 33.6255 18.3976 33.7316L18.0775 33.9081L18.3976 33.7316C18.4561 33.8377 18.5379 33.9212 18.6316 33.9764C18.725 34.0314 18.8281 34.0571 18.9304 34.0531C19.0327 34.0492 19.1344 34.0157 19.2248 33.9532L30.0274 25.301ZM30.0274 25.301C30.1123 25.3597 30.185 25.4425 30.2366 25.5441C30.2881 25.6459 30.3159 25.7616 30.3159 25.8805C30.3159 25.9994 30.2881 26.1152 30.2366 26.2169C30.185 26.3185 30.1123 26.4013 30.0274 26.46L30.027 26.4603L19.225 33.953L30.0274 25.301Z" fill="white" stroke="white" stroke-width="0.731045"/>
+                                                        </g>
+                                                        <defs>
+                                                          <clipPath id="clip0_1392_2271">
+                                                            <rect width="46.4945" height="50.1755" fill="white" transform="translate(0.505859 0.792725)"/>
+                                                          </clipPath>
+                                                        </defs>
+                                                      </svg>
+                                                      <div class="text-label" style="margin-top: 10px;">Video</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 content-item">
+                                                <div class="content-card" data-content="file">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                        <path d="M18.5168 27.1802H34.4831V24.9718H18.5168V27.1802ZM18.5168 33.295H34.4831V31.0867H18.5168V33.295ZM18.5168 39.4121H27.8581V37.2038H18.5168V39.4121ZM14.6081 46.375C13.5923 46.375 12.7443 46.0349 12.0641 45.3547C11.3839 44.6746 11.0431 43.8258 11.0416 42.8085V10.1915C11.0416 9.17562 11.3824 8.32763 12.0641 7.64746C12.7457 6.96729 13.5945 6.62647 14.6103 6.625H32.0208L41.9583 16.5625V42.8085C41.9583 43.8244 41.6182 44.6731 40.938 45.3547C40.2579 46.0364 39.4084 46.3765 38.3896 46.375H14.6081ZM30.9166 17.6667V8.83333H14.6103C14.2702 8.83333 13.9581 8.97467 13.674 9.25733C13.3898 9.54 13.2485 9.85137 13.25 10.1915V42.8085C13.25 43.1472 13.3913 43.4585 13.674 43.7427C13.9566 44.0268 14.268 44.1681 14.6081 44.1667H38.3918C38.7304 44.1667 39.0418 44.0253 39.326 43.7427C39.6101 43.46 39.7514 43.1479 39.75 42.8063V17.6667H30.9166Z" fill="white"/>
+                                                      </svg>
+                                                      <div class="text-label" style="margin-top: 10px;">File</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 content-item">
+                                                <div class="content-card" data-content="link">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 47 51" fill="none">
+                                                        <path d="M14.0653 18.9608C10.4794 18.9608 7.62109 22.0953 7.62109 25.8805C7.62109 29.6656 10.4794 32.8001 14.0653 32.8001H21.3757V35.8951H14.0653C8.99151 35.8951 4.81753 31.4405 4.81753 25.8805C4.81753 20.3205 8.99151 15.8659 14.0653 15.8659H21.3757V18.9608H14.0653ZM31.0621 24.2284V27.5325H16.4412V24.2284H31.0621ZM33.438 35.8951H26.1275V32.8001H33.438C37.0238 32.8001 39.8821 29.6656 39.8821 25.8805C39.8821 22.0953 37.0238 18.9608 33.438 18.9608H26.1275V15.8659H33.438C38.5117 15.8659 42.6857 20.3205 42.6857 25.8805C42.6857 31.4405 38.5117 35.8951 33.438 35.8951Z" fill="white" stroke="white"/>
+                                                      </svg>
+                                                      <div class="text-label" style="margin-top: 10px;">Link</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 content-item">
+                                                <div class="content-card" data-content="catatan">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                        <path d="M12.402 41.9583H30.9167V30.9167H41.9584V12.402C41.9584 12.0045 41.831 11.6784 41.5763 11.4237C41.3216 11.169 40.9963 11.0417 40.6002 11.0417H12.3998C12.0038 11.0417 11.6784 11.169 11.4237 11.4237C11.1691 11.6784 11.0417 12.0045 11.0417 12.402V40.6002C11.0417 40.9962 11.1691 41.3216 11.4237 41.5763C11.6784 41.831 12.0045 41.9583 12.402 41.9583ZM12.402 44.1667C11.4127 44.1667 10.5706 43.8192 9.87571 43.1243C9.18082 42.4295 8.83337 41.5881 8.83337 40.6002V12.3998C8.83337 11.4134 9.18082 10.572 9.87571 9.87568C10.5706 9.18079 11.4127 8.83334 12.402 8.83334H40.6002C41.5866 8.83334 42.428 9.18079 43.1244 9.87568C43.8193 10.5706 44.1667 11.4127 44.1667 12.402V31.5549L31.5527 44.1667H12.402ZM17.4127 29.7264V27.5181H26.5V29.7264H17.4127ZM17.4127 20.9792V18.7708H35.5873V20.9792H17.4127Z" fill="white"/>
+                                                      </svg>
+                                                      <div class="text-label" style="margin-top: 10px;">Catatan</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 content-item">
+                                                <div class="content-card" data-content="tugas">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none">
+                                                        <path d="M25.3958 39.2421H27.6041V28.874L32.2416 33.5115L33.8051 31.9369L26.5 24.6318L19.1948 31.9369L20.7715 33.4982L25.3958 28.874V39.2421ZM14.6103 46.375C13.593 46.375 12.7443 46.0349 12.0641 45.3547C11.3839 44.6746 11.0431 43.8258 11.0416 42.8085V10.1915C11.0416 9.17562 11.3824 8.32763 12.0641 7.64746C12.7457 6.96729 13.5945 6.62647 14.6103 6.625H32.0208L41.9583 16.5625V42.8085C41.9583 43.8244 41.6182 44.6731 40.938 45.3547C40.2579 46.0364 39.4084 46.3765 38.3896 46.375H14.6103ZM30.9166 17.6667V8.83333H14.6103C14.2702 8.83333 13.9581 8.97467 13.674 9.25733C13.3898 9.54 13.2485 9.85137 13.25 10.1915V42.8085C13.25 43.1472 13.3913 43.4585 13.674 43.7427C13.9566 44.0268 14.268 44.1681 14.6081 44.1667H38.3918C38.7304 44.1667 39.0418 44.0253 39.326 43.7427C39.6101 43.46 39.7514 43.1479 39.75 42.8063V17.6667H30.9166Z" fill="white"/>
+                                                      </svg>
+                                                      <div class="text-label" style="margin-top: 10px;">Tugas</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    `;
+
+    const cardContainer = document.getElementById("cardContainer");
+    cardContainer.insertAdjacentHTML("beforeend", newModuleHTML);
+
+    // Pastikan event listener diatur setelah elemen ter-render
+    setTimeout(() => {
+        initializeAddButton(moduleCounter);
+    }, 0);
+
+    // Fungsi untuk inisialisasi tombol tambah pada modul tertentu
+    function initializeAddButton(moduleId) {
+        const tambahButton = document.getElementById(`tambahButton${moduleId}`);
+        const modalOverlay = document.getElementById(`modalOverlay${moduleId}`);
+        const closeButton = document.getElementById(`closeButton${moduleId}`);
+        const cardsContainer = document.getElementById(`cardsContainer${moduleId}`);
+
+        // Cek apakah elemen ada
+        if (!tambahButton || !modalOverlay || !closeButton || !cardsContainer) {
+            console.error(`Elemen tidak ditemukan untuk modul ${moduleId}`);
+            return;
+        }
+
+        // Event untuk menampilkan modal
+        tambahButton.addEventListener("click", () => {
+            modalOverlay.style.display = "flex";
+        });
+
+        // Event untuk menutup modal
+        closeButton.addEventListener("click", () => {
+            modalOverlay.style.display = "none";
+        });
+
+        // Event untuk memilih konten di modal
+        modalOverlay.querySelectorAll(".content-card").forEach((card) => {
+            card.addEventListener("click", () => {
+                const contentType = card.getAttribute("data-content");
+                addContent(contentType, cardsContainer); // Tambahkan konten ke modul yang sesuai
+                modalOverlay.style.display = "none"; // Tutup modal
+            });
+        });
+    }
+
+    // Fungsi untuk menambahkan konten ke container modul tertentu
+    function addContent(contentType, cardsContainer) {
+        const templates = {
+
+            soal: `
+                <div class="card custom-card-style p-3">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <!-- Dropdown -->
+                    <select class="form-select custom-dropdownn">
+                        <option selected>Pilih soal</option>
+                        <option value="1">Soal 1</option>
+                        <option value="2">Soal 2</option>
+                        <option value="3">Soal 3</option>
+                    </select>
+                    <!-- Tombol -->
+                    <button class="btn custom-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Buat Soal
+                    </button>
+                </div>
+            `,
+            file: `
+                <div class="card custom-card-style p-3">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <div class="mb-3">
+                        <input
+                            type="text"
+                            class="form-control module-input-style"
+                            placeholder="Masukkan judul materi">
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                        <label class="label-new-style1">File</label>
+                        <div class="custom-file-input">
+                            <input type="file" class="custom-file-input-style" />
+                            <button class="btn btn-primary">Choose file</button>
+                            <span>no file chosen</span>
+                        </div>
+                    </div>
+                </div>
+            `,
+            video: `
+                <div class="card custom-card-style p-3">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <div class="mb-3">
+                        <input
+                            type="text"
+                            class="form-control module-input-style"
+                            placeholder="Masukkan judul materi">
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                        <label class="label-new-style1">Video</label>
+                        <div class="custom-file-input">
+                            <input type="file" class="custom-file-input-style" />
+                            <button class="btn btn-primary">Choose file</button>
+                            <span>no file chosen</span>
+                        </div>
+                        <input type="text" class="custom-link-masukkan" placeholder="Link URL">
+                    </div>
+                </div>
+            `,
+            link: `
+                <div class="card custom-card-style p-3">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+
+                    <div class="mb-3">
+                        <input
+                            type="text"
+                            class="form-control module-input-style"
+                            id="materi1"
+                            placeholder="Masukkan nama catatan">
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control form-horizontal" rows="4" placeholder="Masukkan deskripsi"></textarea>
+                    </div>
+
+                    <div class="mb-3 d-flex align-items-center">
+                        <label for="videoFile" class="label-new-style1">Link</label>
+
+                        <input type="text" class="custom-link-masukkan" placeholder="Link URL">
+                    </div>
+                </div>
+                `,
+            catatan: `
+                <div class="card custom-card-style p-3">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+
+                    <div class="mb-3">
+                        <input
+                            type="text"
+                            class="form-control module-input-style"
+                            id="materi1"
+                            placeholder="Masukkan judul">
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control form-horizontal" rows="4" placeholder="Masukkan catatan"></textarea>
+                    </div>
+
+                </div>
+            `,
+            tugas: `
+                <div class="card custom-card-style p-3">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+
+                    <div class="mb-3">
+                        <input
+                            type="text"
+                            class="form-control module-input-style"
+                            id="materi1"
+                            placeholder="Masukkan nama tugas">
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control form-horizontal" rows="4" placeholder="Masukkan deskripsi"></textarea>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label for="forumStatus" class="label-new-style2">Format </label>
+                        <select class="form-select" id="forumStatus">
+                        <option value="aktif" selected>Semua</option>
+                        <option value="nonaktif">PDF</option>
+                        <option value="nonaktif">DOCX</option>
+                        <option value="nonaktif">ZIP</option>
+                        </select>
+                    </div>
+                </div>
+            `,
+        };
+
+        const cardTemplate = templates[contentType];
+        if (cardTemplate) {
+            cardsContainer.insertAdjacentHTML("beforeend", cardTemplate); // Tambahkan konten ke modul yang sesuai
+        }
+    }
+
+});
 
 </script>
 

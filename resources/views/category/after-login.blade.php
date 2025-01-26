@@ -342,30 +342,40 @@
     <!-- Bagian Filter (Collapse) -->
     <div class="collapse" id="filterCollapse">
         <div class="filter-section d-flex flex-wrap gap-2">
-            <!-- Dropdown untuk Rating -->
-            <select class="form-select filter" name="rating">
-                <option value="" disabled selected>Rating</option>
-                <option value="">Semua</option>
-                <option value="4.5"><i class="bi bi-star-fill"></i> 4.5 Keatas</option>
-                <option value="4.0"><i class="bi bi-star-fill"></i> 4 Keatas</option>
-                <option value="3.5"><i class="bi bi-star-fill"></i> 3.5 Keatas</option>
-            </select>
-            <!-- Dropdown untuk Tingkat -->
-            <select class="form-select filter" name="tingkat">
-                <option value="" disabled selected>Tingkat</option>
-                <option value="">Semua Tingkat</option>
-                <option value="pemula">Pemula</option>
-                <option value="menengah">Menengah</option>
-                <option value="ahli">Ahli</option>
-            </select>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownRating" data-bs-toggle="dropdown" aria-expanded="false">
+                    Rating
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownRating">
+                    <li><a class="dropdown-item" data-value="" href="#">Semua</a></li>
+                    <li><a class="dropdown-item" data-value="4.5" href="#">4.5 Keatas</a></li>
+                    <li><a class="dropdown-item" data-value="4.0" href="#">4 Keatas</a></li>
+                    <li><a class="dropdown-item" data-value="3.5" href="#">3.5 Keatas</a></li>
+                </ul>
+            </div>
 
-            <!-- Dropdown untuk Fitur -->
-            <select class="form-select filter" name="fitur">
-                <option value="" disabled selected>Fitur</option>
-                <option value="">Semua Fitur</option>
-                <option value="gratis">Gratis</option>
-                <option value="bersertifikat">Bersertifikat</option>
-            </select>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownTingkat" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tingkat
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownTingkat">
+                    <li><a class="dropdown-item" data-value="" href="#">Semua Tingkat</a></li>
+                    <li><a class="dropdown-item" data-value="pemula" href="#">Pemula</a></li>
+                    <li><a class="dropdown-item" data-value="menengah" href="#">Menengah</a></li>
+                    <li><a class="dropdown-item" data-value="ahli" href="#">Ahli</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownFitur" data-bs-toggle="dropdown" aria-expanded="false">
+                    Fitur
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownFitur">
+                    <li><a class="dropdown-item" data-value="" href="#">Semua Fitur</a></li>
+                    <li><a class="dropdown-item" data-value="gratis" href="#">Gratis</a></li>
+                    <li><a class="dropdown-item" data-value="bersertifikat" href="#">Bersertifikat</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -843,15 +853,40 @@ select {
     text-decoration: underline;
 }
 
+.dropdown-toggle {
+    font-size: 14px;
+    font-weight: 500 !important; /* Normal untuk teks dropdown */
+    background-color: white !important; /* Ubah warna background */
+    color: #0d6efd !important; /* Warna teks sesuai keinginan */
+    box-shadow: none !important; /* Hilangkan shadow jika ada */
+    border-color: #0d6efd !important; /* Warna border */
+}
+
+.dropdown-menu .dropdown-item {
+    border-radius: 8.341px; /* Opsi untuk item individu */
+    padding: 8px 12px; /* Padding setiap item */
+    color: #002661;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Hilangkan hover */
+.dropdown-menu .dropdown-item:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+.dropdown .btn:focus,
+.dropdown .btn:active,
+.dropdown .btn:focus:active {
+    background-color: #0d6efd !important; /* Ubah warna background */
+    color: white !important; /* Warna teks sesuai keinginan */
+    box-shadow: none !important; /* Hilangkan shadow jika ada */
+}
+
 
 </style>
 <script>
-document.querySelectorAll('.dropdown-item').forEach(function (item) {
-    item.addEventListener('click', function (e) {
-        const value = e.target.dataset.value;
-        console.log('Selected Value:', value); // Tampilkan value yang dipilih
-    });
-});
+
 
 document.addEventListener("DOMContentLoaded", function () {
 const tabs = document.querySelectorAll(".nav-link");
@@ -930,21 +965,22 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPage(currentPage);
 });
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    const filters = document.querySelectorAll(".filter");
     const cards = document.querySelectorAll(".course-card");
 
     function filterCards() {
-        const selectedRating = document.querySelector('select[name="rating"]').value;
-        const selectedTingkat = document.querySelector('select[name="tingkat"]').value;
-        const selectedFitur = document.querySelector('select[name="fitur"]').value;
+        const selectedRating = document.getElementById("dropdownRating").getAttribute("data-selected") || "";
+        const selectedTingkat = document.getElementById("dropdownTingkat").getAttribute("data-selected") || "";
+        const selectedFitur = document.getElementById("dropdownFitur").getAttribute("data-selected") || "";
 
         // Reset semua kartu terlebih dahulu
         cards.forEach(card => {
             card.style.display = "block";
         });
 
-        // Jika ada filter yang dipilih, terapkan filter
+        // Terapkan filter jika ada yang dipilih
         if (selectedRating || selectedTingkat || selectedFitur) {
             cards.forEach(card => {
                 const cardRating = parseFloat(card.getAttribute("data-rating"));
@@ -955,7 +991,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const matchesTingkat = !selectedTingkat || cardTingkat === selectedTingkat;
                 const matchesFitur = !selectedFitur || cardFitur === selectedFitur;
 
-                // Sembunyikan kartu jika tidak sesuai filter
                 if (!(matchesRating && matchesTingkat && matchesFitur)) {
                     card.style.display = "none";
                 }
@@ -963,14 +998,39 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Event listener untuk semua dropdown filter
-    filters.forEach(filter => {
-        filter.addEventListener("change", filterCards);
+    // Event Listener untuk Dropdown Rating
+    document.querySelectorAll('#dropdownRating + .dropdown-menu .dropdown-item').forEach(item => {
+        item.addEventListener("click", function (e) {
+            e.preventDefault();
+            const dropdownButton = document.getElementById("dropdownRating");
+            dropdownButton.textContent = this.textContent; // Perbarui teks tombol
+            dropdownButton.setAttribute("data-selected", this.getAttribute("data-value")); // Simpan nilai terpilih
+            filterCards(); // Jalankan filter
+        });
+    });
+
+    // Event Listener untuk Dropdown Tingkat
+    document.querySelectorAll('#dropdownTingkat + .dropdown-menu .dropdown-item').forEach(item => {
+        item.addEventListener("click", function (e) {
+            e.preventDefault();
+            const dropdownButton = document.getElementById("dropdownTingkat");
+            dropdownButton.textContent = this.textContent; // Perbarui teks tombol
+            dropdownButton.setAttribute("data-selected", this.getAttribute("data-value")); // Simpan nilai terpilih
+            filterCards(); // Jalankan filter
+        });
+    });
+
+    // Event Listener untuk Dropdown Fitur
+    document.querySelectorAll('#dropdownFitur + .dropdown-menu .dropdown-item').forEach(item => {
+        item.addEventListener("click", function (e) {
+            e.preventDefault();
+            const dropdownButton = document.getElementById("dropdownFitur");
+            dropdownButton.textContent = this.textContent; // Perbarui teks tombol
+            dropdownButton.setAttribute("data-selected", this.getAttribute("data-value")); // Simpan nilai terpilih
+            filterCards(); // Jalankan filter
+        });
     });
 });
-
-
-
 
 </script>
 
