@@ -31,4 +31,10 @@ class AdminsoalController extends Controller
 
         return view('admin.soal.setting-edit');
     }
+    public function detailsoal()
+    {
+        return view('admin.soal.detailsoal');
+    }
+
+
 }

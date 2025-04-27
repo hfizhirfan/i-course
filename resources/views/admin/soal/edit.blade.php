@@ -54,12 +54,12 @@
             </a>
             <!-- Tombol Simpan -->
             <!-- Tombol Simpan -->
-            <a href="{{ route('admin.kursus.index') }}" class="btn btn-primary me-2" id="saveButton">
+            <a href="{{ route('admin.soal.index') }}" class="btn btn-primary me-2" id="saveButton">
                 Simpan
             </a>
 
             <!-- Tombol Cancel -->
-            <a href="{{ route('admin.kursus.index') }}" class="btn btn-outline-primary">
+            <a href="{{ route('admin.soal.index') }}" class="btn btn-outline-primary">
                 Cancel
             </a>
         </div>
@@ -2280,6 +2280,10 @@ document.getElementById('add-question-btn').addEventListener('click', function (
     const uniqueMenuId = `dropdown-menu-${Date.now()}`;
 
 
+    const uniqueAnswersContainerId = `answers-container-${Date.now()}`;
+    const uniqueAddAnswerButtonId = `add-answer-button-${Date.now()}`;
+
+
     const newCard = document.createElement('div');
     newCard.className = 'card mb-3';
 
@@ -2292,7 +2296,7 @@ document.getElementById('add-question-btn').addEventListener('click', function (
                     <label class="question-number">${questionCount + 1}.</label>
 
                     <div class="textarea-container" data-group="${questionCount + 1}">
-                        <textarea class="form-control question-textarea" rows="4" placeholder="Masukkan pertanyaan">Manakah dari tipe data berikut yang merupakan tipe data primitif di Java?</textarea>
+                        <textarea class="form-control question-textarea" rows="4" placeholder="Masukkan pertanyaan"></textarea>
                         <div id="imagePreviewContainer"
                             class="image-preview-container"
                             style="
@@ -2369,7 +2373,7 @@ document.getElementById('add-question-btn').addEventListener('click', function (
                 </div>
                 <!-- Jawaban -->
                 <div class="answers-container" id="multiple-choice" style="display: block;">
-                    <div id="answers-container">
+                    <div id="${uniqueAnswersContainerId}">
                         <!-- Answer Group -->
                             <div class="answer-input-group d-flex align-items-center mb-2">
                                 <button class="btn status-button me-2" onclick="toggleAnswerStatus(this)" style="border: none;">
@@ -2418,7 +2422,7 @@ document.getElementById('add-question-btn').addEventListener('click', function (
                     <!-- Button "Tambah jawaban" -->
                     <div class="container mt-3">
                         <div>
-                            <button class="btn add-answer-btn" onclick="addAnswer()" id="add-answer-button">
+                            <button class="btn add-answer-btn" id="${uniqueAddAnswerButtonId}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" class="add-answer-icon">
                                     <path d="M9.28125 7.46875V0.25H7.21875V7.46875H0V9.53125H7.21875V16.75H9.28125V9.53125H16.5V7.46875H9.28125Z" fill="#0056D2"/>
                                 </svg>
@@ -2433,6 +2437,45 @@ document.getElementById('add-question-btn').addEventListener('click', function (
     `;
 
     questionContainer.appendChild(newCard);
+
+    let answerIndex = 2; // Dimulai dari "C"
+
+    // Event listener untuk tombol "Tambah Jawaban"
+    document.getElementById(uniqueAddAnswerButtonId).addEventListener('click', function () {
+        const answersContainer = document.getElementById(uniqueAnswersContainerId);
+
+        if (answerIndex > 4) {
+            alert("Batas maksimum jawaban tercapai!");
+            return;
+        }
+
+        const uniqueFileId = `image-upload-${Date.now()}`;
+        const newAnswer = document.createElement('div');
+        newAnswer.className = 'answer-input-group d-flex align-items-center mb-2';
+        newAnswer.innerHTML = `
+            <button class="btn status-button me-2" onclick="toggleAnswerStatus(this)" style="border: none;">
+                <svg class="icon-x" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.40234 12.0001C1.40234 9.18967 2.51879 6.49434 4.50607 4.50705C6.49336 2.51977 9.1887 1.40332 11.9991 1.40332C14.8096 1.40332 17.5049 2.51977 19.4922 4.50705C21.4795 6.49434 22.5959 9.18967 22.5959 12.0001C22.5959 14.8106 21.4795 17.5059 19.4922 19.4932C17.5049 21.4805 14.8096 22.5969 11.9991 22.5969C9.1887 22.5969 6.49336 21.4805 4.50607 19.4932C2.51879 17.5059 1.40234 14.8106 1.40234 12.0001ZM11.9991 2.92332C9.59183 2.92332 7.28311 3.87962 5.58088 5.58185C3.87865 7.28408 2.92234 9.5928 2.92234 12.0001C2.92234 14.4074 3.87865 16.7162 5.58088 18.4184C7.28311 20.1206 9.59183 21.0769 11.9991 21.0769C14.4065 21.0769 16.7152 20.1206 18.4174 18.4184C20.1196 16.7162 21.0759 14.4074 21.0759 12.0001C21.0759 9.5928 20.1196 7.28408 18.4174 5.58185C16.7152 3.87962 14.4065 2.92332 11.9991 2.92332ZM15.7655 8.23532C15.9155 8.38534 15.9998 8.58879 15.9998 8.80092C15.9998 9.01305 15.9155 9.2165 15.7655 9.36652L13.1303 12.0001L15.7655 14.6337C15.9158 14.7839 16.0002 14.9877 16.0002 15.2001C16.0002 15.4126 15.9158 15.6163 15.7655 15.7665C15.6153 15.9167 15.4116 16.0011 15.1991 16.0011C14.9867 16.0011 14.783 15.9167 14.6327 15.7665L11.9991 13.1313L9.36554 15.7665C9.29116 15.8409 9.20286 15.8999 9.10568 15.9402C9.0085 15.9804 8.90434 16.0011 8.79914 16.0011C8.69395 16.0011 8.58979 15.9804 8.49261 15.9402C8.39543 15.8999 8.30713 15.8409 8.23274 15.7665C8.15836 15.6921 8.09936 15.6038 8.05911 15.5067C8.01885 15.4095 7.99813 15.3053 7.99813 15.2001C7.99813 15.0949 8.01885 14.9908 8.05911 14.8936C8.09936 14.7964 8.15836 14.7081 8.23274 14.6337L10.8679 12.0001L8.23274 9.36652C8.08253 9.2163 7.99813 9.01256 7.99813 8.80012C7.99813 8.58768 8.08253 8.38394 8.23274 8.23372C8.38296 8.0835 8.5867 7.99911 8.79914 7.99911C9.01159 7.99911 9.21533 8.0835 9.36554 8.23372L11.9991 10.8689L14.6327 8.23372C14.7071 8.15922 14.7953 8.10011 14.8925 8.05978C14.9897 8.01945 15.0939 7.99869 15.1991 7.99869C15.3044 7.99869 15.4086 8.01945 15.5058 8.05978C15.603 8.10011 15.6912 8.16082 15.7655 8.23532Z" fill="black"/>
+                </svg>
+            </button>
+            <label class="answer-label me-2">${String.fromCharCode(65 + answerIndex)}.</label>
+            <div class="input-wrapper position-relative">
+                <input type="text" class="form-control pr-5" placeholder="Masukkan jawaban">
+                <button class="btn image-button position-absolute end-0 top-50 translate-middle-y" style="border: none;" onclick="document.getElementById('${uniqueFileId}').click();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <path d="M4.16732 4.97248H3.93147V5.20833V17.7083V17.9442H4.16732H12.2648V19.5558H4.16732C3.14862 19.5558 2.31983 18.727 2.31983 17.7083V5.20833C2.31983 4.18963 3.14862 3.36085 4.16732 3.36085H17.709C18.7277 3.36085 19.5565 4.18963 19.5565 5.20833V12.2642H17.9448V5.20833V4.97248H17.709H4.16732Z" fill="#4A5568" stroke="#4A5568" stroke-width="0.471698"/>
+                        <path d="M16.2266 15.3892H5.68068L8.2937 11.9051L9.1647 13.6471L9.33536 13.9885L9.56433 13.6832L12.4893 9.78319L16.2266 15.3892Z" fill="#4A5568" stroke="#4A5568" stroke-width="0.471698"/>
+                        <path d="M20.8333 15.625H18.75V18.75H15.625V20.8333H18.75V23.9583H20.8333V20.8333H23.9583V18.75H20.8333V15.625Z" fill="#4A5568"/>
+                    </svg>
+                </button>
+                <input type="file" id="${uniqueFileId}" style="display: none;" onchange="handleFileUpload(event)">
+            </div>
+        `;
+
+        answersContainer.appendChild(newAnswer);
+        answerIndex++;
+    });
+
 
     document.getElementById(uniqueToggleId).addEventListener('click', function (event) {
         event.stopPropagation();

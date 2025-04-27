@@ -16,6 +16,12 @@
                   </svg>
 
             </button>
+            <div class="notification-popup d-none">
+                <div class="popup-content">
+                    Tidak ada notifikasi
+                </div>
+            </div>
+
 
             <div style="position: relative; display: inline-block;">
                 <img src="{{ Vite::asset('resources/images/profile4.png') }}"
@@ -66,7 +72,7 @@
 <div class="container my-5 isi">
     <div class="row g-4">
       <!-- Left Info Cards -->
-      <div class="col-md-2">
+        <div class="col-md-2">
             <div class="card info-card">
                 <div class="info-content">
                     <div class="info-number">114</div>
@@ -285,7 +291,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 <style>
 .navbar h4 {
     font-size: 28px;
@@ -458,6 +464,7 @@
     margin-top: -20px;
 }
 
+
 .angka {
     display: flex;
     flex-direction: column;
@@ -497,10 +504,21 @@
 
 .chart-bar div {
     width: 100%;
-    border-top-left-radius: 12px; /* Radius untuk sisi kiri atas */
-    border-top-right-radius: 12px; /* Radius untuk sisi kanan atas */
-    border-bottom-left-radius: 0; /* Pastikan sisi bawah tidak ada radius */
-    border-bottom-right-radius: 0; /* Pastikan sisi bawah tidak ada radius */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    animation: growBar 1s ease-out forwards;
+}
+
+@keyframes growBar {
+    0% {
+        height: 0;
+    }
+    100% {
+        /* Nanti tetap tinggi aslinya, biar pakai inherit */
+        height: var(--target-height);
+    }
 }
 
 .chart-bar span {
@@ -510,13 +528,14 @@
     color: #070707;
 }
 
-.bar-1 { height: 60px; background-color: #a8c7ff; }
-.bar-2 { height: 40px; background-color: #a8c7ff; }
-.bar-3 { height: 90px; background-color: #3b82f6; }
-.bar-4 { height: 60px; background-color: #a8c7ff; }
-.bar-5 { height: 70px; background-color: #3b82f6; }
-.bar-6 { height: 100px; background-color: #1e40af; }
-.bar-7 { height: 80px; background-color: #1e40af; }
+/* Update masing-masing bar dengan custom property untuk target tingginya */
+.bar-1 { --target-height: 60px; height: 60px; background-color: #a8c7ff; animation-delay: 0.2s; }
+.bar-2 { --target-height: 40px; height: 40px; background-color: #a8c7ff; animation-delay: 0.4s; }
+.bar-3 { --target-height: 90px; height: 90px; background-color: #3b82f6; animation-delay: 0.6s; }
+.bar-4 { --target-height: 60px; height: 60px; background-color: #a8c7ff; animation-delay: 0.8s; }
+.bar-5 { --target-height: 70px; height: 70px; background-color: #3b82f6; animation-delay: 1s; }
+.bar-6 { --target-height: 100px; height: 100px; background-color: #1e40af; animation-delay: 1.2s; }
+.bar-7 { --target-height: 80px; height: 80px; background-color: #1e40af; animation-delay: 1.4s; }
 
 
 .card-custom {
@@ -613,22 +632,157 @@
     display: none;
 }
 
+.notification-popup {
+    position: absolute;
+    top: 70px;
+    right: 90px;
+    background: white;
+    border-radius: 20px;
+    padding: 0px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+    height: 129px;
+    width: 250px; /* opsional, biar popup lebar bagus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification-popup .popup-content {
+    font-size: 14px;
+    font-weight: 600;
+    color: #464F60;
+    text-align: center;
+    padding: 20px 30px; /* pindahkan padding ke sini */
+}
+
+/* Untuk animasi muncul */
+.notification-popup.show {
+    display: block;
+    opacity: 1;
+}
+
+.notification-popup.d-none {
+    display: none;
+    opacity: 0;
+}
+
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    function togglePopup() {
-        const popup = document.getElementById('popup');
-        if (popup.style.display === 'none' || popup.style.display === '') {
-            popup.style.display = 'block';
-        } else {
-            popup.style.display = 'none';
-        }
-    }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const popup = document.getElementById('popup');
-        popup.style.display = 'none';
+    document.addEventListener("DOMContentLoaded", function() {
+    const numbers = document.querySelectorAll(".info-number");
+
+        numbers.forEach(num => {
+            const target = parseInt(num.textContent); // Ambil angka target
+            let count = 0;
+            const speed = 20; // kecepatan (lebih kecil = lebih cepat)
+
+            const updateCount = () => {
+                count += Math.ceil(target / 100); // Naik bertahap
+                if (count >= target) {
+                    num.textContent = target; // Set angka target pas selesai
+                } else {
+                    num.textContent = count;
+                    setTimeout(updateCount, speed);
+                }
+            };
+
+            num.textContent = "0"; // Mulai dari 0
+            updateCount();
+        });
     });
+    document.addEventListener("DOMContentLoaded", function() {
+        function animateNumber(element, target, duration) {
+            let start = 0;
+            let startTime = null;
+
+            function updateNumber(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const value = Math.floor(progress * target);
+                element.textContent = value.toString().padStart(2, '0'); // 2 digit
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    element.textContent = target.toString().padStart(2, '0'); // final fix
+                }
+            }
+
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Animasi waktu
+        const timeElement = document.querySelector('.time');
+        const [hourStr, minuteStr] = timeElement.textContent.split(':').map(s => s.trim());
+
+        // Kosongkan dulu
+        timeElement.innerHTML = `<span class="hour">00</span> : <span class="minute">00</span>`;
+
+        const hourElement = document.querySelector('.hour');
+        const minuteElement = document.querySelector('.minute');
+
+        animateNumber(hourElement, parseInt(hourStr), 1000); // 1 detik
+        animateNumber(minuteElement, parseInt(minuteStr), 1000);
+
+        // Animasi tanggal
+        const dateElement = document.querySelector('.date-tgl');
+        const dateText = dateElement.textContent; // contoh: "10 October 2024"
+        const [dayStr, monthStr, yearStr] = dateText.split(' ');
+
+        // Ganti jadi sementara 00 Month Year
+        dateElement.innerHTML = `<span class="day">00</span> ${monthStr} ${yearStr}`;
+
+        const dayElement = document.querySelector('.day');
+        animateNumber(dayElement, parseInt(dayStr), 1000);
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const btnNotif = document.querySelector(".btn");
+        const notifPopup = document.querySelector(".notification-popup");
+        const profileImage = document.querySelector("img[onclick='togglePopup()']");
+        const profilePopup = document.getElementById("popup");
+
+        // Awalnya semua popup tertutup
+        notifPopup.classList.add("d-none");
+        profilePopup.style.display = "none";
+
+        btnNotif.addEventListener("click", function(e) {
+            e.stopPropagation(); // biar klik tombol gak kena event document
+            notifPopup.classList.toggle("d-none");
+            notifPopup.classList.toggle("show");
+
+            // Kalau notif dibuka, pastikan popup profile ketutup
+            profilePopup.style.display = "none";
+        });
+
+        profileImage.addEventListener("click", function(e) {
+            e.stopPropagation(); // biar klik image gak kena event document
+            if (profilePopup.style.display === "none" || profilePopup.style.display === "") {
+                profilePopup.style.display = "block";
+            } else {
+                profilePopup.style.display = "none";
+            }
+
+            // Kalau profile dibuka, pastikan notif popup ketutup
+            notifPopup.classList.add("d-none");
+            notifPopup.classList.remove("show");
+        });
+
+        // Klik di luar semua elemen = semua popup tertutup
+        document.addEventListener("click", function(e) {
+            notifPopup.classList.add("d-none");
+            notifPopup.classList.remove("show");
+            profilePopup.style.display = "none";
+        });
+    });
+
+
 </script>
 
 @endsection

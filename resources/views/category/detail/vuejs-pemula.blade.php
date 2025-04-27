@@ -1482,7 +1482,36 @@ function scrollToSection(sectionId) {
         });
     }
 }
+function filterReviews(filter, button) {
+    // Hilangkan 'active' dari semua tombol
+    document.querySelectorAll('.btn-rating').forEach(btn => btn.classList.remove('active'));
 
+    // Tambahkan 'active' ke tombol yang diklik
+    button.classList.add('active');
+
+    // Ambil semua review card
+    const reviews = document.querySelectorAll('.review-card');
+
+    reviews.forEach(review => {
+        const rating = parseInt(review.getAttribute('data-rating'));
+        const hasPhoto = review.getAttribute('data-photo') === 'true';
+
+        // Aturan filter
+        if (filter === 'all') {
+            review.style.display = 'block';
+        } else if (filter === 'photo') {
+            if (hasPhoto) {
+                review.style.display = 'block';
+            } else {
+                review.style.display = 'none';
+            }
+        } else if (rating === filter) {
+            review.style.display = 'block';
+        } else {
+            review.style.display = 'none';
+        }
+    });
+}
 
 
 

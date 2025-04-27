@@ -182,7 +182,7 @@
             <div class="input-container">
                 <label for="kontenModul" class="label-aligned">Konten</label>
                     <div class="container custom-margin-top">
-                            <div class="card custom-card-style p-3">
+                            <div class="card custom-card-style p-3" data-id="1">
                                 <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
                                     <i class="bi bi-three-dots-vertical"></i>
                                 </button>
@@ -208,12 +208,12 @@
                                 </div>
                             </div>
                             <div class="custom-dropdown" id="dropdown1">
-                                <a href="#">Hapus</a>
+                                <a href="#" class="hapusCard" data-target="1">Hapus</a> <!-- kasih id supaya mudah diambil -->
                                 <a href="#">Pindah ke atas</a>
                                 <a href="#">Pindah ke bawah</a>
                             </div>
 
-                            <div class="card custom-card-style p-3">
+                            <div class="card custom-card-style p-3" data-id="2">
                                 <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown2">
                                     <i class="bi bi-three-dots-vertical"></i>
                                 </button>
@@ -239,12 +239,12 @@
                                 </div>
                             </div>
                             <div class="custom-dropdown" id="dropdown2">
-                                <a href="#">Hapus</a>
+                                <a href="#" class="hapusCard" data-target="2">Hapus</a>
                                 <a href="#">Pindah ke atas</a>
                                 <a href="#">Pindah ke bawah</a>
                             </div>
 
-                            <div class="card custom-card-style p-3">
+                            <div class="card custom-card-style p-3" data-id="3">
                                 <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown3">
                                     <i class="bi bi-three-dots-vertical"></i>
                                 </button>
@@ -267,14 +267,16 @@
                                     <option value="nonaktif">Nonaktif</option>
                                     </select>
                                 </div>
+
                             </div>
                             <div class="custom-dropdown" id="dropdown3">
-                                <a href="#">Hapus</a>
+                                <a href="#" class="hapusCard" data-target="3">Hapus</a>
                                 <a href="#">Pindah ke atas</a>
                                 <a href="#">Pindah ke bawah</a>
                             </div>
 
-                            <div class="card custom-card-style p-3">
+
+                            <div class="card custom-card-style p-3" data-id="4">
                                 <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown4">
                                     <i class="bi bi-three-dots-vertical"></i>
                                 </button>
@@ -297,13 +299,15 @@
                                     <option value="nonaktif">Nonaktif</option>
                                     </select>
                                 </div>
+
                             </div>
                             <div class="custom-dropdown" id="dropdown4">
-                                <a href="#">Hapus</a>
+                                <a href="#" class="hapusCard" data-target="4">Hapus</a>
                                 <a href="#">Pindah ke atas</a>
                                 <a href="#">Pindah ke bawah</a>
                             </div>
-                            <div class="card custom-card-style p-3">
+
+                            <div class="card custom-card-style p-3" data-id="5">
                                 <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown5">
                                     <i class="bi bi-three-dots-vertical"></i>
                                 </button>
@@ -326,13 +330,15 @@
                                     <option value="nonaktif">Nonaktif</option>
                                     </select>
                                 </div>
+
                             </div>
                             <div class="custom-dropdown" id="dropdown5">
-                                <a href="#">Hapus</a>
+                                <a href="#" class="hapusCard" data-target="5">Hapus</a>
                                 <a href="#">Pindah ke atas</a>
                                 <a href="#">Pindah ke bawah</a>
                             </div>
-                            <div class="card custom-card-style p-3">
+
+                            <div class="card custom-card-style p-3" data-id="6">
                                 <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown6">
                                     <i class="bi bi-three-dots-vertical"></i>
                                 </button>
@@ -352,7 +358,7 @@
 
                             </div>
                             <div class="custom-dropdown" id="dropdown6">
-                                <a href="#">Hapus</a>
+                                <a href="#" class="hapusCard" data-target="6">Hapus</a>
                                 <a href="#">Pindah ke atas</a>
                                 <a href="#">Pindah ke bawah</a>
                             </div>
@@ -465,8 +471,8 @@
             <div class="input-container">
             <label for="kontenModul" class="label-aligned">Konten</label>
                 <div class="container custom-margin-top">
-                    <div class="card custom-card-style p-3">
-                        <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                    <div class="card custom-card-style p-3" data-id="7">
+                        <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown7">
                             <i class="bi bi-three-dots-vertical"></i>
                         </button>
 
@@ -494,6 +500,11 @@
                             <option value="nonaktif">Nonaktif</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="custom-dropdown" id="dropdown7">
+                        <a href="#" class="hapusCard" data-target="7">Hapus</a> <!-- kasih id supaya mudah diambil -->
+                        <a href="#">Pindah ke atas</a>
+                        <a href="#">Pindah ke bawah</a>
                     </div>
 
                     <div class="cards-container" data-modul="modul2"></div>
@@ -1386,6 +1397,27 @@ document.querySelectorAll('.toggle-dropdown').forEach(button => {
     }
   });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const hapusButtons = document.querySelectorAll('.hapusCard');
+
+    hapusButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            const card = document.querySelector(`.card[data-id="${targetId}"]`);
+
+            if (card) {
+                card.remove();
+            }
+            const dropdown = this.closest('.custom-dropdown');
+            if (dropdown) {
+                dropdown.style.display = 'none'; // sembunyikan dropdown
+            }
+        });
+    });
+});
+
+
 
 
 // Ambil semua tombol dengan class 'tambah-modul-btn'

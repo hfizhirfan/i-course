@@ -13,57 +13,62 @@
         </a>
     </div>
 </div>
+<div class="background">
+    <div class="container learning-section">
+        <div class="title-section">
+            <h2 class="text-semibold">Lanjut Belajar</h2>
+            <button class="btn btn-learning" onclick="window.location.href='{{ route('course.after-login') }}'">Pembelajaran saya</button>
+        </div>
+        <div class="row">
+            <!-- Course 1 -->
+            <div class="col-md-3">
+                <div class="card shadow-sm custom-card" >
+                    <img src="{{ Vite::asset('resources/images/Pemrograman java untuk pemula.png') }}" class="card-img-top" alt="Flutter dan Dart">
+                    <div class="card-body">
+                      <h5 class="card-title fw-semibold" style="color: #333; margin-bottom: 15px;">Pemrograman Java untuk Pemula</h5>
+                      <p class="card-text text-muted" style="font-size: 10px; margin-bottom: 20px;">Bahasa Pemrograman</p>
+                      <p class="card-text d-flex align-items-center mb-0" style="font-weight: bold; color: #333;">
+                        4.8 <i class="bi bi-star-fill ms-1 me-2" style="color: #f39c12;"></i>
+                        <span style="color: #333; font-weight: normal;">(565 ulasan)</span>
+                      </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 2 -->
+            <div class="col-md-3">
+                <div class="card shadow-sm custom-card" >
+                    <img src="{{ Vite::asset('resources/images/rest api dengan golang.png') }}" class="card-img-top" alt="Flutter dan Dart">
+                    <div class="card-body">
+                      <h5 class="card-title fw-semibold" style="color: #333; margin-bottom: 15px;">REST API dengan Golang</h5>
+                      <p class="card-text text-muted" style="font-size: 10px; margin-bottom: 20px;">Bahasa Pemrograman</p>
+                      <p class="card-text d-flex align-items-center mb-0" style="font-weight: bold; color: #333;">
+                        4.8 <i class="bi bi-star-fill ms-1 me-2" style="color: #f39c12;"></i>
+                        <span style="color: #333; font-weight: normal;">( 505 ulasan)</span>
+                      </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 3 -->
+            <div class="col-md-3">
+                <div class="card shadow-sm custom-card" >
+                    <img src="{{ Vite::asset('resources/images/bahasa jepang n3.png') }}" class="card-img-top" alt="Flutter dan Dart">
+                    <div class="card-body">
+                      <h5 class="card-title fw-semibold" style="color: #333; margin-bottom: 15px;">Bahasa Jepang N3</h5>
+                      <p class="card-text text-muted" style="font-size: 10px; margin-bottom: 20px;">Bahasa</p>
+                      <p class="card-text d-flex align-items-center mb-0" style="font-weight: bold; color: #333;">
+                        4.6 <i class="bi bi-star-fill ms-1 me-2" style="color: #f39c12;"></i>
+                        <span style="color: #333; font-weight: normal;">(630 ulasan)</span>
+                      </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="/images/backgroundimg2.png" class="dekorasi dekorasi-kiri">
+    <img src="/images/backgroundimg1.png" class="dekorasi dekorasi-kanan">
 
-<div class="container learning-section">
-    <div class="title-section">
-        <h2 class="text-semibold">Lanjut Belajar</h2>
-        <button class="btn btn-learning" onclick="window.location.href='{{ route('course.after-login') }}'">Pembelajaran saya</button>
-    </div>
-    <div class="row">
-        <!-- Course 1 -->
-        <div class="col-md-3">
-            <div class="card shadow-sm custom-card" >
-                <img src="{{ Vite::asset('resources/images/Pemrograman java untuk pemula.png') }}" class="card-img-top" alt="Flutter dan Dart">
-                <div class="card-body">
-                  <h5 class="card-title fw-semibold" style="color: #333; margin-bottom: 15px;">Pemrograman Java untuk Pemula</h5>
-                  <p class="card-text text-muted" style="font-size: 10px; margin-bottom: 20px;">Bahasa Pemrograman</p>
-                  <p class="card-text d-flex align-items-center mb-0" style="font-weight: bold; color: #333;">
-                    4.8 <i class="bi bi-star-fill ms-1 me-2" style="color: #f39c12;"></i>
-                    <span style="color: #333; font-weight: normal;">(565 ulasan)</span>
-                  </p>
-                </div>
-            </div>
-        </div>
-        <!-- Course 2 -->
-        <div class="col-md-3">
-            <div class="card shadow-sm custom-card" >
-                <img src="{{ Vite::asset('resources/images/rest api dengan golang.png') }}" class="card-img-top" alt="Flutter dan Dart">
-                <div class="card-body">
-                  <h5 class="card-title fw-semibold" style="color: #333; margin-bottom: 15px;">REST API dengan Golang</h5>
-                  <p class="card-text text-muted" style="font-size: 10px; margin-bottom: 20px;">Bahasa Pemrograman</p>
-                  <p class="card-text d-flex align-items-center mb-0" style="font-weight: bold; color: #333;">
-                    4.8 <i class="bi bi-star-fill ms-1 me-2" style="color: #f39c12;"></i>
-                    <span style="color: #333; font-weight: normal;">( 505 ulasan)</span>
-                  </p>
-                </div>
-            </div>
-        </div>
-        <!-- Course 3 -->
-        <div class="col-md-3">
-            <div class="card shadow-sm custom-card" >
-                <img src="{{ Vite::asset('resources/images/bahasa jepang n3.png') }}" class="card-img-top" alt="Flutter dan Dart">
-                <div class="card-body">
-                  <h5 class="card-title fw-semibold" style="color: #333; margin-bottom: 15px;">Bahasa Jepang N3</h5>
-                  <p class="card-text text-muted" style="font-size: 10px; margin-bottom: 20px;">Bahasa</p>
-                  <p class="card-text d-flex align-items-center mb-0" style="font-weight: bold; color: #333;">
-                    4.6 <i class="bi bi-star-fill ms-1 me-2" style="color: #f39c12;"></i>
-                    <span style="color: #333; font-weight: normal;">(630 ulasan)</span>
-                  </p>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
 
 <div class="container rekomendasi">
     <h2>Rekomendasi</h2>
@@ -544,6 +549,7 @@
   height: auto;
 }
 
+
 .jumbotron-overlay2 {
   position: absolute;
   top: 53%;
@@ -552,6 +558,41 @@
   text-align: center;
   z-index: 10;
 }
+
+.background {
+margin-top: 100px;
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Style semua dekorasi */
+.dekorasi {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  pointer-events: none; /* supaya tidak mengganggu klik konten utama */
+}
+
+/* Dekorasi kiri atas */
+.dekorasi-kiri {
+  top: -50px;
+  left: -10px;
+}
+
+/* Dekorasi kanan bawah */
+.dekorasi-kanan {
+  bottom: -55px;
+  right: -10px;
+}
+.learning-section {
+  position: relative;
+  z-index: 10; /* Konten di depan */
+}
+
 
 .btn-explore2 {
   padding: 12px 24px;
@@ -564,9 +605,6 @@
   transition: all 0.3s ease; /* Transisi halus saat hover */
 }
 
-.learning-section {
-    margin-top: 3rem;
-}
 .title-section {
     display: flex;
     margin-bottom: 80px;
@@ -652,11 +690,11 @@
 .container.rekomendasi h2 {
   font-size: 34px;
   font-weight: 600;
-  margin-top: 200px;
+  margin-top: 160px;
 }
 
 .container.learning-section {
-    margin-top: 160px;
+    margin-top: 60px;
 }
 
 </style>

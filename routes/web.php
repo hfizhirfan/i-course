@@ -95,6 +95,7 @@ Route::get('/soal/tambah', [AdminsoalController::class, 'create'])->name('admin.
 Route::get('/soal/edit', [AdminsoalController::class, 'edit'])->name('admin.soal.edit');
 Route::get('/soal/pengaturan-tambah', [AdminsoalController::class, 'settingtambah'])->name('admin.soal.setting-tambah');
 Route::get('/soal/pengaturan-edit', [AdminsoalController::class, 'settingedit'])->name('admin.soal.setting-edit');
+Route::get('/soal/detail', [AdminsoalController::class, 'detailsoal'])->name('admin.soal.detail');
 
 
 

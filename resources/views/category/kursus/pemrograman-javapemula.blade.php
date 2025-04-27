@@ -85,7 +85,7 @@
                               </span>
                             </div>
                         </li>
-                        <li class="modul-item {{ $showContent === 'content-materippt3' ? 'active' : '' }}">
+                        <li class="modul-item">
                             <input type="checkbox" id="pengantar-java" class="form-check-input modul-progress"/>
                             <div class="modul-content" data-target="content-materippt3">
                               <label class="modul-label">Tipe data primitif (int, double, char, boolean)</label>
@@ -189,7 +189,7 @@
                               </span>
                             </div>
                         </li>
-                        <li class="modul-item">
+                        <li class="modul-item {{ $showContent === 'content-materippt3' ? 'active' : '' }}">
                             <input type="checkbox" id="pengantar-java" class="form-check-input modul-progress"/>
                             <div class="modul-content" data-target="content-materippt3">
                               <label for="pengantar-java" class="modul-label">Studi kasus sederhana menggunakan kontrol alur
@@ -780,6 +780,7 @@ function filterCards() {
     });
 }
 
+
 document.querySelectorAll('input[name="materi"]').forEach((input) => {
     input.addEventListener('change', function () {
         // Sembunyikan semua konten
@@ -902,6 +903,7 @@ checkboxes.forEach((checkbox) => {
 
 // Jalankan fungsi saat halaman dimuat untuk memastikan progress sesuai dengan status awal
 updateProgress();
+
 
 
 

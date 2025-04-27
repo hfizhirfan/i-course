@@ -4,8 +4,7 @@
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="form-container bg-white p-4 rounded shadow">
         <h3 class="text-center heading-text">Daftar dan mulai belajar</h3>
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+        <form id="registerForm">
             <div class="custom-margin">
                 <label for="name" class="input-label">Nama Lengkap</label>
                 <input type="text" id="name" name="name" class="form-control custom-input" placeholder="Masukkan nama lengkap" required>
@@ -19,7 +18,7 @@
                 <input type="password" id="password" name="password" class="form-control custom-input" placeholder="Masukkan password" required>
             </div>
 
-            <button type="submit" class="btn btn-primary custom-register-button">Register</button>
+            <button type="button" id="registerButton" class="btn btn-primary custom-register-button">Register</button>
         </form>
         <hr class="custom-divider">
         <p class="text-center mt-3 custom-login-text">
@@ -155,5 +154,21 @@ body {
 
 
 </style>
+<script>
+    document.getElementById('registerButton').addEventListener('click', function () {
+        // Ambil nilai input
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        // Validasi form
+        if (!name || !email || !password) {
+            alert('Semua field harus diisi!');
+        } else {
+            // Arahkan ke halaman login
+            window.location.href = '{{ route("home") }}';
+        }
+    });
+</script>
 
 @endsection

@@ -238,6 +238,12 @@
                             </div>
                         </div>
 
+                        <div class="custom-dropdown" id="dropdown1">
+                            <a href="#">Hapus</a>
+                            <a href="#">Pindah ke atas</a>
+                            <a href="#">Pindah ke bawah</a>
+                        </div>
+
                         <div id="mainContainer">
                             <!-- Tempat untuk card -->
                             <div id="cardsContainer"></div>
@@ -488,6 +494,7 @@
 .form-label {
     font-weight: 500;
 }
+
 .custom-btn {
     border: 1px solid #4a5568;
     color: #4a5568;
@@ -530,6 +537,31 @@ select.adjust-select option {
 #thumbnail {
     width: 255px;
     margin-top: 10px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    color: black;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    margin-top: 10px;
+    min-width: 200px;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+
+.dropdown-menu div {
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.dropdown-menu div:hover {
+    font-weight: bold;
 }
 
 .form-label-custom {
@@ -606,12 +638,7 @@ select.adjust-select option {
     color: #003D94;
     margin-right: 77px; /* Jarak antara label dan input */
 }
-.custom-dropdownn {
-    width: 400px;
-    border-radius: 20px;
-    box-shadow: none;
-    margin-bottom: 20px;
-}
+
 
 .custom-button {
     width: 200px;
@@ -930,7 +957,7 @@ select.adjust-select option {
     padding: 10px 15px;
     text-decoration: none;
     color: #333;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: 400;
     margin-bottom: -3px;
 }
@@ -1139,6 +1166,30 @@ document.querySelectorAll('.toggle-btn').forEach(button => {
         button.classList.toggle('btn-solid-blue');
         button.classList.toggle('btn-outline-blue');
     });
+});
+
+
+document.querySelectorAll('.toggle-dropdown').forEach(button => {
+  button.addEventListener('click', function () {
+    const dropdownId = this.getAttribute('data-dropdown-id');
+    const dropdown = document.getElementById(dropdownId);
+
+    // Tutup semua dropdown lain
+    document.querySelectorAll('.custom-dropdown').forEach(d => {
+      if (d !== dropdown) d.style.display = 'none';
+    });
+
+    // Toggle tampilan dropdown
+    if (dropdown.style.display === 'block') {
+      dropdown.style.display = 'none';
+    } else {
+      // Posisi dropdown sesuai tombol
+      const rect = this.getBoundingClientRect();
+      dropdown.style.display = 'block';
+      dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+      dropdown.style.left = `${rect.right - dropdown.offsetWidth}px`;
+    }
+  });
 });
 
 

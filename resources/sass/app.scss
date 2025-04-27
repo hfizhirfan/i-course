@@ -1,8 +1,7 @@
 @use "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
-
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 
 // Warna tema
 $primary-color: #0056D2;
@@ -73,7 +72,7 @@ box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10); // Menambahkan shadow
 
         i {
           color: $primary-color; // Warna ikon biru
-          font-size: 3 rem; // Ukuran ikon
+          font-size: 3rem; // Ukuran ikon
         }
       }
 
@@ -155,10 +154,12 @@ box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10); // Menambahkan shadow
   align-items: center;
   background-color: #f9f9f9;
   margin-top: 100px;
+  position: relative;
 
   .content {
     display: flex;
     align-items: center;
+    margin-top: 0px;
 
     gap: 30px;
     background: white;
@@ -177,7 +178,7 @@ box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10); // Menambahkan shadow
         color: #2b61e6; // Warna biru seperti gambar
         font-size: 28px;
         margin-bottom: 50px;
-        font-weight: bold;
+        font-weight: 600;
       }
 
       p {

@@ -44,6 +44,7 @@
             <div class="carousel-item active">
               <div class="row">
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                   <div class="card shadow-sm custom-card" >
                     <img src="{{ Vite::asset('resources/images/Flutter dan dart untuk menengah.png') }}" class="card-img-top" alt="Flutter dan Dart">
                     <div class="card-body">
@@ -55,9 +56,11 @@
                       </p>
                     </div>
                   </div>
+                    </a>
                 </div>
                 <!-- Duplicate the card for 3 more times -->
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/HTML CSS JS menengah.png') }}" class="card-img-top" alt="Bahasa Jerman">
                         <div class="card-body">
@@ -68,9 +71,11 @@
                             <span style="color: #333; font-weight: normal;">(310 ulasan)</span>
                           </p>
                         </div>
-                      </div>
+                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/menguasai postgre SQL.png') }}" class="card-img-top" alt="Pengantar Statistika">
                         <div class="card-body">
@@ -81,9 +86,11 @@
                             <span style="color: #333; font-weight: normal;">(505 ulasan)</span>
                           </p>
                         </div>
-                      </div>
+                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/pemrograman visual c pemula.png') }}" class="card-img-top" alt="Pemrograman c#">
                         <div class="card-body">
@@ -94,7 +101,8 @@
                             <span style="color: #333; font-weight: normal;">(565 ulasan)</span>
                           </p>
                         </div>
-                      </div>
+                    </div>
+                    </a>
                 </div>
               </div>
             </div>
@@ -103,6 +111,7 @@
             <div class="carousel-item">
               <div class="row">
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/react native pemula.png') }}" class="card-img-top" alt="Bahasa Inggris">
                         <div class="card-body">
@@ -114,9 +123,11 @@
                           </p>
                         </div>
                       </div>
+                    </a>
                   </div>
                   <!-- Duplicate the card for 3 more times -->
                   <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/Vuejs mahir.png') }}" class="card-img-top" alt="AutoCAD">
                         <div class="card-body">
@@ -128,8 +139,10 @@
                           </p>
                         </div>
                       </div>
+                    </a>
                   </div>
                   <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/rest api dengan golang.png') }}" class="card-img-top" alt="Java">
                         <div class="card-body">
@@ -140,9 +153,11 @@
                             <span style="color: #333; font-weight: normal;">(245 ulasan)</span>
                           </p>
                         </div>
-                      </div>
+                    </div>
+                    </a>
                   </div>
                   <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/laravel menengah.png') }}" class="card-img-top" alt="Bahasa Jepang">
                         <div class="card-body">
@@ -153,7 +168,8 @@
                             <span style="color: #333; font-weight: normal;">(291 ulasan)</span>
                           </p>
                         </div>
-                      </div>
+                    </div>
+                    </a>
                   </div>
               </div>
             </div>
@@ -192,6 +208,7 @@
             <div class="carousel-item active">
               <div class="row">
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/laravel pemula.png') }}" class="card-img-top" alt="Flutter dan Dart">
                         <div class="card-body">
@@ -202,9 +219,11 @@
                             <span style="color: #333; font-weight: normal;">(315 ulasan)</span>
                           </p>
                         </div>
-                      </div>
+                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/pemrograman swift menengah.png') }}" class="card-img-top" alt="Flutter dan Dart">
                         <div class="card-body">
@@ -215,9 +234,11 @@
                             <span style="color: #333; font-weight: normal;">(285 ulasan)</span>
                           </p>
                         </div>
-                      </div>
+                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/Machine learning dengan python.png') }}" class="card-img-top" alt="Flutter dan Dart">
                         <div class="card-body">
@@ -229,8 +250,10 @@
                           </p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/reactjs pemula.png') }}" class="card-img-top" alt="Flutter dan Dart">
                         <div class="card-body">
@@ -242,6 +265,7 @@
                           </p>
                         </div>
                     </div>
+                    </a>
                 </div>
               </div>
             </div>
@@ -250,6 +274,7 @@
             <div class="carousel-item">
               <div class="row">
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/pemrograman python untuk menengah.png') }}" class="card-img-top" alt="Flutter dan Dart">
                         <div class="card-body">
@@ -261,8 +286,10 @@
                           </p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/rest api php.png') }}" class="card-img-top" alt="Flutter dan Dart">
                         <div class="card-body">
@@ -274,8 +301,10 @@
                           </p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/Flutter dan dart untuk pemula.png') }}" class="card-img-top" alt="Flutter dan Dart">
                         <div class="card-body">
@@ -287,8 +316,10 @@
                           </p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
+                    <a href="{{ route('category.detail.before-java') }}" style="text-decoration: none;">
                     <div class="card shadow-sm custom-card" >
                         <img src="{{ Vite::asset('resources/images/Vuejs pemula.png') }}" class="card-img-top" alt="Flutter dan Dart">
                         <div class="card-body">
@@ -300,6 +331,7 @@
                           </p>
                         </div>
                     </div>
+                    </a>
                 </div>
               </div>
             </div>

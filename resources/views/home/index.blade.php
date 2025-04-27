@@ -27,7 +27,11 @@
         </p>
       </div>
     </div>
+    <img src="/images/backgroundimg2.png" class="dekorasi dekorasi-kiri">
+    <img src="/images/backgroundimg1.png" class="dekorasi dekorasi-kanan">
 </div>
+
+
 
 <div class="categories-container">
     <div class="category-item">
@@ -486,6 +490,24 @@
 .carousel-control-next {
   right: -20px; /* Sedikit keluar dari container */
 }
+.dekorasi {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  pointer-events: none; /* supaya tidak mengganggu klik konten utama */
+}
+.dekorasi-kiri {
+  top: -40px;
+  left: -10px;
+}
+
+/* Dekorasi kanan bawah */
+.dekorasi-kanan {
+  bottom: -55px;
+  right: -10px;
+}
+
 </style>
 
 <script>
