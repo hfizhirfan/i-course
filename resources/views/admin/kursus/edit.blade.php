@@ -1435,18 +1435,18 @@ const templates = {
             <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
-            <!-- Dropdown -->
-            <select class="form-select custom-dropdownn">
-                <option selected>Pilih soal</option>
-                <option value="1">Soal 1</option>
-                <option value="2">Soal 2</option>
-                <option value="3">Soal 3</option>
-            </select>
+
+            <div class="mb-3">
+                <select class="form-select quiz-select-style">
+                    <option selected>Pilih soal</option>
+                    <option value="1">Soal 1</option>
+                    <option value="2">Soal 2</option>
+                    <option value="3">Soal 3</option>
+                </select>
+            </div>
             <!-- Tombol -->
-            <button class="btn custom-button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
+            <button class="btn btn-primary d-flex align-items-center quiz-btn-style">
+                <i class="bi bi-plus-lg me-2"></i>
                 Buat Soal
             </button>
         </div>
@@ -1799,18 +1799,18 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                     <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
-                    <!-- Dropdown -->
-                    <select class="form-select custom-dropdownn">
-                        <option selected>Pilih soal</option>
-                        <option value="1">Soal 1</option>
-                        <option value="2">Soal 2</option>
-                        <option value="3">Soal 3</option>
-                    </select>
-                    <!-- Tombol -->
-                    <button class="btn custom-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
+
+                    <div class="mb-3">
+                        <select class="form-select quiz-select-style">
+                            <option selected>Pilih soal</option>
+                            <option value="1">Soal 1</option>
+                            <option value="2">Soal 2</option>
+                            <option value="3">Soal 3</option>
+                        </select>
+                    </div>
+                 
+                    <button class="btn btn-primary d-flex align-items-center quiz-btn-style">
+                        <i class="bi bi-plus-lg me-2"></i>
                         Buat Soal
                     </button>
                 </div>

@@ -75,62 +75,84 @@
     </div>
 
 </div>
-<div class="score-container">
-    <div class="student-score-card">
-        <div class="top-row">
-            <div class="name">
-                <a href="{{ route('admin.soal.detailsoalbudiono') }}" style="text-decoration: none; color: inherit;">
-                Budiono Siregar
-                </a>
-            </div>
-            <div class="score-section">
-                <div class="score-label">Nilai</div>
-                <div class="score-value">75 <span class="divider">/</span> 100</div>
+<div class="score-container mt-5 mb-5">
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+        <div class="d-flex flex-column">
+            <div class="nama-user">Budiono Siregar</div>
+            <div class="d-flex align-items-center text-muted" style="font-size: 0.9rem;">
+                <div class="fw-semibold me-2">Selesai</div>
+                <div>27 September 2024</div>
+                <div class="ms-3">16:06</div>
             </div>
         </div>
-        <div class="finish-time">
-            <span class="label">Selesai</span>
-            <span class="date">27 September 2024</span>
-            <span class="time">16:06</span>
-        </div>
-    </div>
-
-    <div class="student-score-card">
-        <div class="top-row">
-            <div class="name">
-                <a href="{{ route('admin.soal.detailsoalbudiono') }}" style="text-decoration: none; color: inherit;">
-                    Cahya Mustika Dewi
-                </a>
+        <div class="d-flex flex-column text-end mt-2 mt-md-0">
+            <div class="nilai-wrapper d-flex align-items-center justify-content-end">
+                <span class="label-nilai">Nilai</span>
+                <span class="angka-nilai">75 / 100</span>
             </div>
-            <div class="score-section">
-                <div class="score-label">Nilai</div>
-                <div class="score-value">70 <span class="divider">/</span> 100</div>
-            </div>
-        </div>
-        <div class="finish-time">
-            <span class="label">Selesai</span>
-            <span class="date">29 September 2024</span>
-            <span class="time">18:28</span>
+            <div class="fw-bold" style="color: #090; font-size: 1.2rem;">LULUS</div>
         </div>
     </div>
 
+    <div class="card p-4  soal-card">
+        <!-- Soal 1 -->
+        <div class="question mb-5 d-flex">
+            <div class="number me-2 fw-bold">1.</div>
+            <div class="content">
+                <h6 class="soal-text mb-3">
+                    Manakah dari tipe data berikut yang merupakan tipe data primitif di Java?
+                </h6>
 
-    <div class="student-score-card">
-        <div class="top-row">
-            <div class="name">
-                <a href="{{ route('admin.soal.detailsoalbudiono') }}" style="text-decoration: none; color: inherit;">
-                Stephan Kuncoro
-                </a>
-            </div>
-            <div class="score-section">
-                <div class="score-label">Nilai</div>
-                <div class="score-value">70 <span class="divider">/</span> 100</div>
+              <p class="pilih-jawaban">Pilih Jawaban :</p>
+              <div class="option">
+                <input type="radio" disabled>
+                <label class="label-checked">
+                  A. Char <i class="bi bi-check-circle-fill check-icon"></i>
+                </label>
+              </div>
+              <div class="option">
+                <input type="radio" disabled>
+                <label>B. String</label>
+              </div>
+              <div class="option">
+                <input type="radio" disabled checked>
+                <label>C. Array</label>
+              </div>
+              <div class="option">
+                <input type="radio" disabled>
+                <label>D. Integer</label>
+              </div>
             </div>
         </div>
-        <div class="finish-time">
-            <span class="label">Selesai</span>
-            <span class="date">29 September 2024</span>
-            <span class="time">08:21</span>
+
+        <div class="question mb-5 d-flex">
+            <div class="number me-2 fw-bold">2.</div>
+            <div class="content">
+                <h6 class="soal-text mb-3">
+                    Apa fungsi dari System.out.println("Hello, World!"); di Java?
+                </h6>
+
+              <p class="pilih-jawaban">Pilih Jawaban :</p>
+              <div class="option">
+                <input type="radio" disabled>
+                <label>
+                  A. Menghentikan program
+                </label>
+              </div>
+              <div class="option">
+                <input type="radio" disabled>
+                <label>B. Menjalankan program</label>
+              </div>
+              <div class="option">
+                <input type="radio" disabled >
+                <label>C. Membaca data dari pengguna</label>
+              </div>
+              <div class="option">
+                <input type="radio" disabled checked>
+                <label class="label-checked">D. Menampilkan teks "Hello, World!" ke layar <i class="bi bi-check-circle-fill check-icon"></i>
+                </label>
+              </div>
+            </div>
         </div>
     </div>
 </div>
@@ -231,72 +253,94 @@
 
 
 .score-container {
-    max-width: 1100px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: 20px;
 }
-
-.student-score-card {
-    background-color: #e8f0fe; /* background biru muda */
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+.check-icon {
+    color: green;
+    margin-left: 5px;
 }
 
-.top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
+
+
+.answer-checked {
+    font-weight: bold;
+    color: #0d6efd;
 }
 
-.name {
-    font-size: 16px;
-    font-weight: 600;
-    color: #0056D2; /* biru */
+.nilai-wrapper {
+    font-size: 0.9rem;
+    color: #6c757d; /* Bootstrap text-muted color */
 }
 
-.score-section {
-    display: flex; /* tambahkan ini! */
-    align-items: center; /* tengah-tengah vertikal */
-    gap: 5px; /* jarak antar nilai */
-}
-
-.score-label {
-    font-size: 16px;
-    color: #4A5568;
+.label-nilai {
+    font-weight: normal;
     margin-right: 20px;
 }
 
-.score-value {
+.angka-nilai {
+    font-weight: 600;
     font-size: 20px;
-    color: #0d47a1;
+    color: #003D94; /* Bootstrap primary color */
+}
+.nama-user {
+    color: #0056D2;
+    font-size: 16px;
     font-weight: 600;
 }
 
-.score-value .divider {
-    font-weight: normal;
+.soal-card {
+    background-color: transparent; /* transparan */
+    border: none; /* hilangkan stroke/border */
 }
 
-.finish-time {
-    font-size: 13px;
-    color: #555;
+.question {
+  align-items: flex-start;
 }
-.label {
-    font-size: 14px;
-    font-weight: 600;
-    color:#4A5568;
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.option input[type="radio"] {
     margin-right: 10px;
-}
-.time {
-    font-size: 12px;
-    font-weight: 400;
-    color:#4A5568;
-    margin-left: 40px;
+    width: 18px;
+    height: 18px;
 }
 
+.option label {
+    font-size: 15px;
+    color: #333;
+}
 
+.label-checked {
+    font-weight: 600;
+    color: #212529;
+}
+
+.check-icon {
+    color: green;
+    font-size: 1rem;
+    margin-left: 8px;
+}
+
+.number {
+  min-width: 20px; /* Supaya angka punya lebar tetap */
+}
+.content {
+  flex: 1;
+}
+.pilih-jawaban {
+  font-size: 12px;
+  font-weight: 400;
+}
+.soal-text {
+  font-size: 16px;
+  font-weight: 400;
+}
 
 
 </style>

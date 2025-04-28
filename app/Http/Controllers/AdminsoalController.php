@@ -35,6 +35,11 @@ class AdminsoalController extends Controller
     {
         return view('admin.soal.detailsoal');
     }
+    public function detailsoalbudiono()
+    {
+        return view('admin.soal.detailsoal-budiono');
+    }
+
 
 
 }
