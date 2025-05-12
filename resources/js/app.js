@@ -2,6 +2,7 @@ import "./bootstrap";
 import.meta.glob(["../images/**"]);
 
 
+
 // Kursus Terbaru
 const trackTerbaru = document.querySelector('#cardSliderTerbaru .carousel-track');
 const prevBtnTerbaru = document.querySelector('.kursus-terbaru-prev-btn');

@@ -1359,10 +1359,10 @@ const templates = {
                 </select>
             </div>
             <!-- Tombol -->
-            <button class="btn btn-primary d-flex align-items-center quiz-btn-style">
+            <a href="{{ route('kursus.create-soal', ['from' => 'create']) }}" class="btn btn-primary d-flex align-items-center quiz-btn-style">
                 <i class="bi bi-plus-lg me-2"></i>
                 Buat Soal
-            </button>
+            </a>
         </div>
     `,
     file: `
@@ -1752,10 +1752,10 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         </select>
                     </div>
 
-                    <button class="btn btn-primary d-flex align-items-center quiz-btn-style">
+                    <a href="{{ route('admin.soal.setting-tambah', ['from' => 'create']) }}" class="btn btn-primary d-flex align-items-center quiz-btn-style">
                         <i class="bi bi-plus-lg me-2"></i>
                         Buat Soal
-                    </button>
+                    </a>
                 </div>
             `,
             file: `

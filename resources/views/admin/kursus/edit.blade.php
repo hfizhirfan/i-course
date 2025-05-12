@@ -17,9 +17,45 @@
                   </svg>
 
             </button>
+            <div class="notification-popup d-none">
+                <div class="isi-content">
+                    Tidak ada notifikasi
+                </div>
+            </div>
 
             <!-- Profile Picture -->
-            <img src="{{Vite::asset('resources/images/profile4.png') }}" alt="Profile Picture" class="rounded-circle" style="width: 53px; height: 53px;">
+            <div style="position: relative; display: inline-block;">
+                <img src="{{ Vite::asset('resources/images/profile4.png') }}"
+                     alt="Profile Picture"
+                     class="rounded-circle"
+                     style="width: 53px; height: 53px; cursor: pointer;"
+                     onclick="togglePopup()">
+
+                <!-- Popup -->
+                <div id="popup" style="
+                    display: none;
+                    position: absolute;
+                    top: 60px;
+                    width: 170px;
+                    right: 0;
+                    margin-right: 10px;
+                    background-color: white;
+                    padding: 16px;
+                    border-radius: 16px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    z-index: 100;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px; /* Jarak antara ikon dan teks */
+                ">
+                    <a href="{{ route('home.guest') }}" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                            <path d="M3.97865 14.1666C3.65235 14.1666 3.38011 14.0575 3.16194 13.8393C2.94378 13.6212 2.83446 13.3487 2.83398 13.0219V3.97792C2.83398 3.65161 2.9433 3.37938 3.16194 3.16121C3.38058 2.94304 3.65282 2.83372 3.97865 2.83325H8.51411V3.54159H3.97865C3.86957 3.54159 3.76946 3.58692 3.67832 3.67759C3.58718 3.76825 3.54185 3.86836 3.54232 3.97792V13.0226C3.54232 13.1312 3.58765 13.2311 3.67832 13.3223C3.76898 13.4134 3.86886 13.4587 3.97794 13.4583H8.51411V14.1666H3.97865ZM11.6612 11.0067L11.164 10.4967L12.8066 8.85408H6.51165V8.14575H12.8066L11.1633 6.50242L11.6605 5.99383L14.1673 8.49992L11.6612 11.0067Z" fill="#4A5568"/>
+                        </svg>
+                        Keluar
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
@@ -351,10 +387,10 @@
                                         <option value="soal3">Soal Ujian 1</option>
                                     </select>
                                 </div>
-                                <button class="btn btn-primary d-flex align-items-center quiz-btn-style">
+                                <a href="{{ route('kursus.create-soal', ['from' => 'edit']) }}" class="btn btn-primary d-flex align-items-center quiz-btn-style">
                                     <i class="bi bi-plus-lg me-2"></i>
                                     Buat Soal
-                                </button>
+                                </a>
 
                             </div>
                             <div class="custom-dropdown" id="dropdown6">
@@ -703,6 +739,46 @@
     border: none;
     box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
 }
+#popup {
+    display: none;
+}
+
+.notification-popup {
+    position: absolute;
+    top: 70px;
+    right: 90px;
+    background: white;
+    border-radius: 20px;
+    padding: 0px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+    height: 129px;
+    width: 250px; /* opsional, biar popup lebar bagus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification-popup .isi-content {
+    font-size: 14px;
+    font-weight: 600;
+    color: #464F60;
+    text-align: center;
+    padding: 20px 30px; /* pindahkan padding ke sini */
+}
+
+/* Untuk animasi muncul */
+.notification-popup.show {
+    display: block;
+    opacity: 1;
+}
+
+.notification-popup.d-none {
+    display: none;
+    opacity: 0;
+}
+
 .form-label {
     font-weight: 500;
 }
@@ -914,10 +990,10 @@ select.adjust-select option {
     font-weight: 300;
 }
 .duration-container {
-    margin-top: 50px; /* Atur margin atas sesuai kebutuhan */
+    margin-top: 50px;
 }
 .margin-top-added {
-    margin-top: 50px; /* Atur margin atas sesuai kebutuhan */
+    margin-top: 50px;
 }
 .additional-margin-top {
     margin-top: 50px;
@@ -952,10 +1028,10 @@ select.adjust-select option {
 }
 
 .horizontal-form label {
-    width: 150px; /* Atur sesuai kebutuhan */
+    width: 150px;
 }
 .label-horizontal {
-  width: 140px; /* Lebar tetap untuk label agar sejajar dengan elemen lainnya */
+  width: 140px;
   font-size: 14px;
     font-weight: 600;
     color: #003D94;
@@ -963,7 +1039,7 @@ select.adjust-select option {
 }
 
 .form-horizontal {
-  resize: none; /* Mencegah ukuran textarea dapat diubah */
+  resize: none;
   font-size: 10.479px;
   font-weight: 400;
   width: 670.685px;
@@ -977,8 +1053,8 @@ select.adjust-select option {
 }
 
 .input-custom {
-  font-weight: 400; /* Mengatur ketebalan teks */
-  font-size: 12.226px; /* Ukuran font */
+  font-weight: 400;
+  font-size: 12.226px;
   width: 671px;
 }
 .label-aligned {
@@ -1445,10 +1521,10 @@ const templates = {
                 </select>
             </div>
             <!-- Tombol -->
-            <button class="btn btn-primary d-flex align-items-center quiz-btn-style">
+            <a href="{{ route('kursus.create-soal', ['from' => 'edit']) }}" class="btn btn-primary d-flex align-items-center quiz-btn-style">
                 <i class="bi bi-plus-lg me-2"></i>
                 Buat Soal
-            </button>
+            </a>
         </div>
     `,
     file: `
@@ -1808,11 +1884,11 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                             <option value="3">Soal 3</option>
                         </select>
                     </div>
-                 
-                    <button class="btn btn-primary d-flex align-items-center quiz-btn-style">
+
+                    <a href="{{ route('kursus.create-soal', ['from' => 'edit']) }}" class="btn btn-primary d-flex align-items-center quiz-btn-style">
                         <i class="bi bi-plus-lg me-2"></i>
                         Buat Soal
-                    </button>
+                    </a>
                 </div>
             `,
             file: `
@@ -1936,6 +2012,45 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
         }
     }
 
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const btnNotif = document.querySelector(".btn");
+    const notifPopup = document.querySelector(".notification-popup");
+    const profileImage = document.querySelector("img[onclick='togglePopup()']");
+    const profilePopup = document.getElementById("popup");
+
+    // Awalnya semua popup tertutup
+    notifPopup.classList.add("d-none");
+    profilePopup.style.display = "none";
+
+    btnNotif.addEventListener("click", function(e) {
+        e.stopPropagation(); // biar klik tombol gak kena event document
+        notifPopup.classList.toggle("d-none");
+        notifPopup.classList.toggle("show");
+
+        // Kalau notif dibuka, pastikan popup profile ketutup
+        profilePopup.style.display = "none";
+    });
+
+    profileImage.addEventListener("click", function(e) {
+        e.stopPropagation(); // biar klik image gak kena event document
+        if (profilePopup.style.display === "none" || profilePopup.style.display === "") {
+            profilePopup.style.display = "block";
+        } else {
+            profilePopup.style.display = "none";
+        }
+
+        // Kalau profile dibuka, pastikan notif popup ketutup
+        notifPopup.classList.add("d-none");
+        notifPopup.classList.remove("show");
+    });
+
+    // Klik di luar semua elemen = semua popup tertutup
+    document.addEventListener("click", function(e) {
+        notifPopup.classList.add("d-none");
+        notifPopup.classList.remove("show");
+        profilePopup.style.display = "none";
+    });
 });
 
 </script>

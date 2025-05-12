@@ -1,10 +1,15 @@
 @extends('layout-admin.app')
 
 @section('content')
+
+@php
+    $routeBack = request('from') === 'edit' ? route('admin.kursus.edit', $kursus->id ?? '') : route('admin.kursus.create');
+@endphp
+
 <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid px-4">
         <!-- Title -->
-        <h4 class="mb-0">Bank Soal</h4>
+        <h4 class="mb-0">Manajemen Kursus</h4>
 
         <!-- Right-side icons -->
         <div class="d-flex align-items-center">
@@ -89,12 +94,12 @@
             </a>
             <!-- Tombol Simpan -->
             <!-- Tombol Simpan -->
-            <a href="{{ route('admin.soal.index') }}" class="btn btn-primary me-2" id="saveButton">
+            <a href="{{ $routeBack }}" class="btn btn-primary me-2" id="saveButton">
                 Simpan
             </a>
 
             <!-- Tombol Cancel -->
-            <a href="{{ route('admin.soal.index') }}" class="btn btn-outline-primary">
+            <a href="{{ $routeBack }}" class="btn btn-outline-primary">
                 Cancel
             </a>
         </div>
@@ -150,7 +155,7 @@
                </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-import" >Import</button>
+              <button type="button" class="btn btn-import">Import</button>
               <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>

@@ -892,12 +892,20 @@ select {
     box-shadow: none !important; /* Hilangkan shadow jika ada */
     border-color: #0d6efd !important; /* Warna border */
 }
+.dropdown-menu {
+    border: 1px solid transparent; /* Sama dengan tombol */
+    border-radius: 8.341px;
+    padding: 10px; /* Ruang dalam menu */
+    background-color: white; /* Latar belakang menu */
+}
 
 .dropdown-menu .dropdown-item {
     border-radius: 8.341px; /* Opsi untuk item individu */
     padding: 8px 12px; /* Padding setiap item */
     color: #002661;
     transition: background-color 0.2s ease-in-out;
+    font-weight: 400;
+    font-size: 12px;
 }
 
 /* Hilangkan hover */
@@ -917,7 +925,6 @@ select {
 
 </style>
 <script>
-
 
 document.addEventListener("DOMContentLoaded", function () {
 const tabs = document.querySelectorAll(".nav-link");

@@ -31,4 +31,9 @@ class AdminkursusController extends Controller
 
         return view('admin.kursus.setting-tambah');
     }
+    public function createsoal()
+    {
+        return view('admin.kursus.create-soal');
+    }
+
 }

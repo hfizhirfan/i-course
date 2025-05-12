@@ -1036,7 +1036,7 @@ function togglePopup(element) {
         popup.style.display = 'block';
     }
 
-    // Klik di luar untuk menutup popup
+
     document.addEventListener('click', function (event) {
         if (!element.contains(event.target) && !popup.contains(event.target)) {
             popup.style.display = 'none';
@@ -1045,7 +1045,7 @@ function togglePopup(element) {
 }
 
 
-// Jalankan kode setelah DOM selesai dimuat
+
 document.addEventListener('DOMContentLoaded', () => {
     // Elemen penting
     const cards = Array.from(document.querySelectorAll('.col-md-3[data-category][data-year]'));

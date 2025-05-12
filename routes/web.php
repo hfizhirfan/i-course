@@ -80,6 +80,8 @@ Route::get('/kursus/tambah', [AdminkursusController::class, 'create'])->name('ad
 Route::get('/kursus/edit', [AdminkursusController::class, 'edit'])->name('admin.kursus.edit');
 Route::get('/kursus/pengaturan-tambah', [AdminkursusController::class, 'settingtambah'])->name('admin.kursus.setting-tambah');
 Route::get('/kursus/pengaturan-edit', [AdminkursusController::class, 'settingedit'])->name('admin.kursus.setting-edit');
+Route::get('/kursus/tambah/create-soal', [AdminkursusController::class, 'createsoal'])->name('kursus.create-soal');
+
 
 
 Route::get('/pengajar', [AdminpengajarController::class, 'index'])->name('admin.pengajar.index');
