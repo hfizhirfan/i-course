@@ -867,6 +867,10 @@ select {
     cursor: not-allowed;
 }
 
+.dropdown-menu.show {
+  display: block !important;
+}
+
 .page-numbers {
     display: flex;
     gap: 10px;
