@@ -245,8 +245,8 @@
                             </div>
                             <div class="custom-dropdown" id="dropdown1">
                                 <a href="#" class="hapusCard" data-target="1">Hapus</a> <!-- kasih id supaya mudah diambil -->
-                                <a href="#">Pindah ke atas</a>
-                                <a href="#">Pindah ke bawah</a>
+                                <a href="#" class="pindahAtas" data-target="1">Pindah ke atas</a>
+                                <a href="#" class="pindahBawah" data-target="1">Pindah ke bawah</a>
                             </div>
 
                             <div class="card custom-card-style p-3" data-id="2">
@@ -276,8 +276,8 @@
                             </div>
                             <div class="custom-dropdown" id="dropdown2">
                                 <a href="#" class="hapusCard" data-target="2">Hapus</a>
-                                <a href="#">Pindah ke atas</a>
-                                <a href="#">Pindah ke bawah</a>
+                                <a href="#" class="pindahAtas" data-target="2">Pindah ke atas</a>
+                                <a href="#" class="pindahBawah" data-target="2">Pindah ke bawah</a>
                             </div>
 
                             <div class="card custom-card-style p-3" data-id="3">
@@ -307,8 +307,8 @@
                             </div>
                             <div class="custom-dropdown" id="dropdown3">
                                 <a href="#" class="hapusCard" data-target="3">Hapus</a>
-                                <a href="#">Pindah ke atas</a>
-                                <a href="#">Pindah ke bawah</a>
+                                <a href="#" class="pindahAtas" data-target="3">Pindah ke atas</a>
+                                <a href="#" class="pindahBawah" data-target="3">Pindah ke bawah</a>
                             </div>
 
 
@@ -339,8 +339,8 @@
                             </div>
                             <div class="custom-dropdown" id="dropdown4">
                                 <a href="#" class="hapusCard" data-target="4">Hapus</a>
-                                <a href="#">Pindah ke atas</a>
-                                <a href="#">Pindah ke bawah</a>
+                                <a href="#" class="pindahAtas" data-target="4">Pindah ke atas</a>
+                                <a href="#" class="pindahBawah" data-target="4">Pindah ke bawah</a>
                             </div>
 
                             <div class="card custom-card-style p-3" data-id="5">
@@ -395,8 +395,8 @@
                             </div>
                             <div class="custom-dropdown" id="dropdown6">
                                 <a href="#" class="hapusCard" data-target="6">Hapus</a>
-                                <a href="#">Pindah ke atas</a>
-                                <a href="#">Pindah ke bawah</a>
+                                <a href="#" class="pindahAtas" data-target="1">Pindah ke atas</a>
+                                <a href="#" class="pindahBawah" data-target="1">Pindah ke bawah</a>
                             </div>
 
                             <div class="cards-container" data-modul="modul1"></div>
@@ -539,8 +539,8 @@
                     </div>
                     <div class="custom-dropdown" id="dropdown7">
                         <a href="#" class="hapusCard" data-target="7">Hapus</a> <!-- kasih id supaya mudah diambil -->
-                        <a href="#">Pindah ke atas</a>
-                        <a href="#">Pindah ke bawah</a>
+                        <a href="#" class="pindahAtas" data-target="7">Pindah ke atas</a>
+                        <a href="#" class="pindahBawah" data-target="7">Pindah ke bawah</a>
                     </div>
 
                     <div class="cards-container" data-modul="modul2"></div>
@@ -1474,6 +1474,7 @@ document.querySelectorAll('.toggle-dropdown').forEach(button => {
   });
 });
 document.addEventListener('DOMContentLoaded', function() {
+    // Hapus
     const hapusButtons = document.querySelectorAll('.hapusCard');
 
     hapusButtons.forEach(button => {
@@ -1481,14 +1482,52 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             const targetId = this.getAttribute('data-target');
             const card = document.querySelector(`.card[data-id="${targetId}"]`);
+            const dropdown = document.getElementById(`dropdown${targetId}`);
 
-            if (card) {
-                card.remove();
+            if (card) card.remove();
+            if (dropdown) dropdown.remove();
+        });
+    });
+
+    // Pindah ke atas
+    const atasButtons = document.querySelectorAll('.custom-dropdown a:nth-child(2)');
+    atasButtons.forEach((btn, index) => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = this.parentElement;
+            const targetId = dropdown.id.replace('dropdown', '');
+            const card = document.querySelector(`.card[data-id="${targetId}"]`);
+
+            if (card && card.previousElementSibling && card.previousElementSibling.classList.contains('custom-dropdown')) {
+                const prevDropdown = card.previousElementSibling;
+                const prevCard = prevDropdown.previousElementSibling;
+
+                // Pindahkan pasangan sebelumnya ke bawah
+                prevCard.before(card);
+                card.after(dropdown);
             }
-            const dropdown = this.closest('.custom-dropdown');
-            if (dropdown) {
-                dropdown.style.display = 'none'; // sembunyikan dropdown
+            dropdown.style.display = 'none';
+        });
+    });
+
+    // Pindah ke bawah
+    const bawahButtons = document.querySelectorAll('.custom-dropdown a:nth-child(3)');
+    bawahButtons.forEach((btn, index) => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = this.parentElement;
+            const targetId = dropdown.id.replace('dropdown', '');
+            const card = document.querySelector(`.card[data-id="${targetId}"]`);
+
+            if (card && dropdown.nextElementSibling && dropdown.nextElementSibling.classList.contains('card')) {
+                const nextCard = dropdown.nextElementSibling;
+                const nextDropdown = nextCard.nextElementSibling;
+
+                // Pindahkan pasangan ini ke bawah
+                nextDropdown.after(card);
+                card.after(dropdown);
             }
+            dropdown.style.display = 'none';
         });
     });
 });
@@ -1507,8 +1546,8 @@ const cardsContainer = document.getElementById("cardsContainer");
 // Template untuk setiap card
 const templates = {
     soal: `
-        <div class="card custom-card-style p-3">
-            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+        <div class="card custom-card-style p-3" data-id="{id}">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
 
@@ -1526,10 +1565,15 @@ const templates = {
                 Buat Soal
             </a>
         </div>
+        <div class="custom-dropdown" id="dropdown{id}">
+            <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+            <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+            <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+        </div>
     `,
     file: `
-        <div class="card custom-card-style p-3">
-            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+        <div class="card custom-card-style p-3" data-id="{id}">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
             <div class="mb-3">
@@ -1547,10 +1591,15 @@ const templates = {
                 </div>
             </div>
         </div>
+        <div class="custom-dropdown" id="dropdown{id}">
+            <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+            <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+            <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+        </div>
     `,
     video: `
-        <div class="card custom-card-style p-3">
-            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+        <div class="card custom-card-style p-3" data-id="{id}">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
             <div class="mb-3">
@@ -1569,10 +1618,15 @@ const templates = {
                 <input type="text" class="custom-link-masukkan" placeholder="Link URL">
             </div>
         </div>
+        <div class="custom-dropdown" id="dropdown{id}">
+            <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+            <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+            <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+        </div>
     `,
     link: `
-        <div class="card custom-card-style p-3">
-            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+        <div class="card custom-card-style p-3" data-id="{id}">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
 
@@ -1580,7 +1634,7 @@ const templates = {
                 <input
                     type="text"
                     class="form-control module-input-style"
-                    id="materi1"
+                    id="materi{id}"
                     placeholder="Masukkan nama catatan">
             </div>
             <div class="mb-3">
@@ -1593,10 +1647,15 @@ const templates = {
                 <input type="text" class="custom-link-masukkan" placeholder="Link URL">
             </div>
         </div>
+        <div class="custom-dropdown" id="dropdown{id}">
+            <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+            <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+            <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+        </div>
         `,
     catatan: `
-        <div class="card custom-card-style p-3">
-            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+        <div class="card custom-card-style p-3" data-id="{id}">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
 
@@ -1604,7 +1663,7 @@ const templates = {
                 <input
                     type="text"
                     class="form-control module-input-style"
-                    id="materi1"
+                    id="materi{id}"
                     placeholder="Masukkan judul">
             </div>
             <div class="mb-3">
@@ -1612,10 +1671,15 @@ const templates = {
             </div>
 
         </div>
+        <div class="custom-dropdown" id="dropdown{id}">
+            <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+            <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+            <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+        </div>
     `,
     tugas: `
-        <div class="card custom-card-style p-3">
-            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+        <div class="card custom-card-style p-3" data-id="{id}">
+            <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                 <i class="bi bi-three-dots-vertical"></i>
             </button>
 
@@ -1623,7 +1687,7 @@ const templates = {
                 <input
                     type="text"
                     class="form-control module-input-style"
-                    id="materi1"
+                    id="materi{id}"
                     placeholder="Masukkan nama tugas">
             </div>
             <div class="mb-3">
@@ -1638,6 +1702,11 @@ const templates = {
                 <option value="nonaktif">ZIP</option>
                 </select>
             </div>
+        </div>
+        <div class="custom-dropdown" id="dropdown{id}">
+            <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+            <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+            <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
         </div>
     `,
 };
@@ -1668,15 +1737,28 @@ modalOverlay.addEventListener("click", (event) => {
     }
 });
 
-// Fungsi untuk menambahkan konten ke dalam container
+let cardIdCounter = 1; // Global counter
+
 function addCard(type, modul) {
     const template = templates[type];
     if (template) {
         const container = document.querySelector(`.cards-container[data-modul="${modul}"]`);
         if (container) {
-            const div = document.createElement("div");
-            div.innerHTML = template;
-            container.appendChild(div.firstElementChild);
+            const id = cardIdCounter++;
+            const html = template.replace(/{id}/g, id); // Ganti semua {id} dengan unik
+            const wrapper = document.createElement("div");
+            wrapper.innerHTML = html;
+
+            // Ambil elemen card dan dropdown
+            const card = wrapper.querySelector('.card');
+            const dropdown = wrapper.querySelector('.custom-dropdown');
+
+            // Tambahkan ke container
+            container.appendChild(card);
+            container.appendChild(dropdown);
+
+            // Inisialisasi fungsionalitas dropdown
+            initializeDropdownEvents(dropdown, card, id);
         } else {
             console.error("Container tidak ditemukan untuk modul:", modul);
         }
@@ -1684,6 +1766,59 @@ function addCard(type, modul) {
         console.error("Template tidak ditemukan untuk tipe:", type);
     }
 }
+function initializeDropdownEvents(dropdown, card, id) {
+    // Toggle tampilkan dropdown
+    const button = card.querySelector('.toggle-dropdown');
+    if (button) {
+        button.addEventListener('click', function () {
+            const dropdownId = this.getAttribute('data-dropdown-id');
+            const dropdown = document.getElementById(dropdownId);
+            document.querySelectorAll('.custom-dropdown').forEach(d => {
+                if (d !== dropdown) d.style.display = 'none';
+            });
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                const rect = this.getBoundingClientRect();
+                dropdown.style.display = 'block';
+                dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+                dropdown.style.left = `${rect.right - dropdown.offsetWidth}px`;
+            }
+        });
+    }
+
+    // Hapus
+    const hapusBtn = dropdown.querySelector('.hapusCard');
+    hapusBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        card.remove();
+        dropdown.remove();
+    });
+
+    // Pindah ke atas
+    const atasBtn = dropdown.querySelector('.pindahAtas');
+    atasBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        pindahCard(card, dropdown, 'atas');
+    });
+
+    // Pindah ke bawah
+    const bawahBtn = dropdown.querySelector('.pindahBawah');
+    bawahBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        pindahCard(card, dropdown, 'bawah');
+    });
+
+}
+document.addEventListener('click', function (e) {
+    if (!e.target.closest('.custom-dropdown') && !e.target.closest('.toggle-dropdown')) {
+        document.querySelectorAll('.custom-dropdown').forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+    }
+});
+
+
 
 
 
@@ -1866,12 +2001,13 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
         });
     }
 
+    let cardIdCounter = 1;
     // Fungsi untuk menambahkan konten ke container modul tertentu
     function addContent(contentType, cardsContainer) {
         const templates = {
 
             soal: `
-                <div class="card custom-card-style p-3">
+                <div class="card custom-card-style p-3" data-id="{id}">
                     <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
@@ -1890,10 +2026,15 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         Buat Soal
                     </a>
                 </div>
+                <div class="custom-dropdown" id="dropdown{id}">
+                    <a href="#" class="hapusCard" data-target="1">Hapus</a> <!-- kasih id supaya mudah diambil -->
+                    <a href="#" class="pindahAtas" data-target="1">Pindah ke atas</a>
+                    <a href="#" class="pindahBawah" data-target="1">Pindah ke bawah</a>
+                </div>
             `,
             file: `
-                <div class="card custom-card-style p-3">
-                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <div class="card custom-card-style p-3" data-id="{id}">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
                     <div class="mb-3">
@@ -1911,10 +2052,15 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         </div>
                     </div>
                 </div>
+                <div class="custom-dropdown" id="dropdown{id}">
+                    <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+                    <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+                    <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+                </div>
             `,
             video: `
-                <div class="card custom-card-style p-3">
-                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <div class="card custom-card-style p-3" data-id="{id}">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
                     <div class="mb-3">
@@ -1933,10 +2079,15 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         <input type="text" class="custom-link-masukkan" placeholder="Link URL">
                     </div>
                 </div>
+                <div class="custom-dropdown" id="dropdown{id}">
+                    <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+                    <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+                    <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+                </div>
             `,
             link: `
-                <div class="card custom-card-style p-3">
-                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <div class="card custom-card-style p-3" data-id="{id}">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
 
@@ -1944,7 +2095,7 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         <input
                             type="text"
                             class="form-control module-input-style"
-                            id="materi1"
+                            id="materi{id}"
                             placeholder="Masukkan nama catatan">
                     </div>
                     <div class="mb-3">
@@ -1957,10 +2108,15 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         <input type="text" class="custom-link-masukkan" placeholder="Link URL">
                     </div>
                 </div>
+                <div class="custom-dropdown" id="dropdown{id}">
+                    <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+                    <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+                    <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+                </div>
                 `,
             catatan: `
-                <div class="card custom-card-style p-3">
-                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <div class="card custom-card-style p-3" data-id="{id}">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
 
@@ -1968,7 +2124,7 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         <input
                             type="text"
                             class="form-control module-input-style"
-                            id="materi1"
+                            id="materi{id}"
                             placeholder="Masukkan judul">
                     </div>
                     <div class="mb-3">
@@ -1976,10 +2132,15 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                     </div>
 
                 </div>
+                <div class="custom-dropdown" id="dropdown{id}">
+                    <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+                    <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+                    <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+                </div>
             `,
             tugas: `
-                <div class="card custom-card-style p-3">
-                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown1">
+                <div class="card custom-card-style p-3" data-id="{id}">
+                    <button class="more-button toggle-dropdown" title="More" type="button" data-dropdown-id="dropdown{id}">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
 
@@ -1987,7 +2148,7 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         <input
                             type="text"
                             class="form-control module-input-style"
-                            id="materi1"
+                            id="materi{id}"
                             placeholder="Masukkan nama tugas">
                     </div>
                     <div class="mb-3">
@@ -2003,16 +2164,34 @@ document.getElementById("addModuleButton").addEventListener("click", function ()
                         </select>
                     </div>
                 </div>
+                <div class="custom-dropdown" id="dropdown{id}">
+                    <a href="#" class="hapusCard" data-target="{id}">Hapus</a>
+                    <a href="#" class="pindahAtas" data-target="{id}">Pindah ke atas</a>
+                    <a href="#" class="pindahBawah" data-target="{id}">Pindah ke bawah</a>
+                </div>
             `,
         };
 
-        const cardTemplate = templates[contentType];
-        if (cardTemplate) {
-            cardsContainer.insertAdjacentHTML("beforeend", cardTemplate); // Tambahkan konten ke modul yang sesuai
-        }
+        const id = cardIdCounter++;
+        const template = templates[contentType];
+        const html = template.replace(/{id}/g, id);
+
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = html;
+
+        const card = wrapper.querySelector(".card");
+        const dropdown = wrapper.querySelector(".custom-dropdown");
+
+        // Tambahkan ke container
+        cardsContainer.appendChild(card);
+        cardsContainer.appendChild(dropdown);
+
+        // Inisialisasi event dropdown dan aksi
+        initDropdownAndActions(card, dropdown);
     }
 
 });
+
 document.addEventListener("DOMContentLoaded", function() {
     const btnNotif = document.querySelector(".btn");
     const notifPopup = document.querySelector(".notification-popup");
@@ -2052,6 +2231,68 @@ document.addEventListener("DOMContentLoaded", function() {
         profilePopup.style.display = "none";
     });
 });
+
+
+function initDropdownAndActions(card, dropdown) {
+    const toggleBtn = card.querySelector('.toggle-dropdown');
+    const dropdownId = toggleBtn?.getAttribute('data-dropdown-id');
+
+    toggleBtn?.addEventListener('click', function () {
+        const thisDropdown = document.getElementById(dropdownId);
+
+        document.querySelectorAll('.custom-dropdown').forEach(dd => {
+            if (dd !== thisDropdown) dd.style.display = 'none';
+        });
+
+        if (thisDropdown.style.display === 'block') {
+            thisDropdown.style.display = 'none';
+        } else {
+            const rect = toggleBtn.getBoundingClientRect();
+            thisDropdown.style.display = 'block';
+            thisDropdown.style.top = `${rect.bottom + window.scrollY}px`;
+            thisDropdown.style.left = `${rect.right - thisDropdown.offsetWidth}px`;
+        }
+    });
+
+    // Event hapus
+    dropdown.querySelector('.hapusCard').addEventListener('click', (e) => {
+        e.preventDefault();
+        card.remove();
+        dropdown.remove();
+    });
+
+    // Event pindah atas
+    dropdown.querySelector('.pindahAtas').addEventListener('click', (e) => {
+        e.preventDefault();
+        const prevDropdown = card.previousElementSibling;
+        const prevCard = prevDropdown?.previousElementSibling;
+
+        if (prevCard?.classList.contains('card')) {
+            prevCard.before(card);
+            card.after(dropdown);
+        }
+        dropdown.style.display = 'none';
+    });
+
+    // Event pindah bawah
+    dropdown.querySelector('.pindahBawah').addEventListener('click', (e) => {
+        e.preventDefault();
+        const nextCard = dropdown.nextElementSibling;
+        const nextDropdown = nextCard?.nextElementSibling;
+
+        if (nextCard?.classList.contains('card')) {
+            nextDropdown?.after(card);
+            card.after(dropdown);
+        }
+        dropdown.style.display = 'none';
+    });
+}
+document.addEventListener('click', function (e) {
+    if (!e.target.closest('.custom-dropdown') && !e.target.closest('.toggle-dropdown')) {
+        document.querySelectorAll('.custom-dropdown').forEach(dd => dd.style.display = 'none');
+    }
+});
+
 
 </script>
 
